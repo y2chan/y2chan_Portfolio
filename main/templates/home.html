@@ -3,8 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Portfolio</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('/static/fonts/SEOLEIMcool.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'MyCustomFont', sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            width: 50%;
+            margin: 0 auto; /* 이 부분을 추가하면 중앙 정렬됩니다. */
+            padding-left: 0; /* 기본적으로 ul에는 padding이 있을 수 있으므로 제거해줍니다. */
+        }
+    </style>
 </head>
 <body>
 
+<!-- Naver News API 사용 -->
+<h1>- Naver News -</h1>
+<h4>Keyword를 입력하면 가장 최신/관련 5개의 뉴스 기사를 가져옵니다.</h4>
+
+<form action="{% url 'main:home' %}" method="get">
+    <h2>Keyword 입력하기</h2>
+    <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
+    <input type="submit" value="검색">
+</form>
+
+<h2>Result</h2>
+{% if news %}
+{% if query %}
+<h2 style="margin-bottom: 40px;">검색어: "{{ query }}"</h2>
+{% endif %}
+<ul>
+    {% for item in news %}
+    <li>
+        <a href="{{ item.link }}" target="_blank"><h3>◼ {{ item.title|safe }}</h3></a>
+        <p>📆 {{ item.pubDate }}</p>
+        <p style="border-bottom: 2px solid #ddd; padding: 8px;">▪ {{ item.description|safe }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<h2 style="margin-top: 50px;">검색 결과가 없습니다.</h2>
+{% endif %}
 </body>
 </html>
