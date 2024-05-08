@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Portfolio</title>
+    <link rel="icon" href="../static/photo/me.jpg" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         @font-face {
@@ -67,7 +68,7 @@
         .first > ol > li {
           padding: auto;
           list-style:none;
-          font-size: 35px;
+          font-size: 30px;
           font-weight: 600;
           margin-top: 10px;
         }
@@ -127,9 +128,14 @@
 <div class="container">
     <div class="first">
         <ol>
-            <li><a><br></a></li>
+            <br>
+            <li style="font-size: 30pt;"><a>y2chan's</a></li>
+            <li style="font-size: 35pt;"><a>Portfolio</a></li>
+            <br>
+            <br>
+            <br>
             <li><a class="mainText" href="{% url 'main:home' %}">Introduce</a></li>
-            <li><a class="mainText" href="LYS3.html">SYU_GPT</a></li>
+            <li><a class="mainText" href="{% url 'main:syugpt' %}">SYU_GPT</a></li>
             <li><a class="mainText" href="{% url 'main:gabean' %}">GaBean</a></li>
         </ol>
     </div>

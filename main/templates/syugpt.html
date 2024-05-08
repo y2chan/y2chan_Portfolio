@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>SYU_GPT</title>
+    <link rel="icon" href="../static/photo/Logo.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('/static/fonts/SEOLEIMcool.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'MyCustomFont', sans-serif;
+            align-items: center;
+            text-align: center;
+            overflow-y: hidden;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 50%;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .container {
+          display: flex;
+          height: 70vh;
+          min-height: 100%;
+          min-width: 800px;
+          background-color: #f8f9fa
+        }
+
+        .mainText {
+          text-decoration: none;
+          color: white;
+        }
+
+        .mainText:hover {
+          color: black;
+        }
+
+        .main {
+          font-size: 50px;
+          font-weight: 600;
+          color: white;
+          text-align: center;
+          border-bottom: 1px solid grey;
+          margin: 0;
+          min-width: 900px;
+          height: 100px;
+          min-height: 100px;
+          line-height: 100px;
+          background: linear-gradient(45deg, #e599f7, #b197fc);
+          border-radius: 5px 5px 0px 0px;
+        }
+
+        .first > ol {
+          width: 100px;
+          margin-top: 20px;
+
+        }
+
+        .first > ol > li {
+          padding: auto;
+          list-style:none;
+          font-size: 30px;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+
+        .first, .second {
+          height: 100vh; /* 높이를 화면 크기에 맞춤 */
+          overflow-y: auto; /* 내부 스크롤 활성화 */
+        }
+
+        .first {
+          background: linear-gradient(to top, #748ffc, #9775fa);
+          border-right: 1px solid grey;
+          width: 15vw;
+          min-width: 20%;
+          border-radius: 0px 0px 0px 5px;
+        }
+
+        .second {
+          background-color: #f8f9fa;
+          width: 85vw;
+          min-width: 800px;
+          border-radius: 0px 0px 5px 0px;
+        }
+
+        .content{
+          font-size: 20px;
+          margin: auto;
+          width: auto;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+        }
+
+        .content > .boldText {
+          font-weight: 600;
+          color: #0074D9;
+        }
+
+        .content > .boldText2 {
+          font-weight: 600;
+          color: #5f3dc4;
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .icon {
+            width: 5%; /* 아이콘 크기 설정 */
+            vertical-align: middle; /* 텍스트 줄과 아이콘의 세로 중앙 정렬 */
+        }
+    </style>
+</head>
+<body>
+<!-- 좌측 메뉴 -->
+<div class="container">
+    <div class="first">
+        <ol>
+            <br>
+            <li style="font-size: 30pt;"><a>y2chan's</a></li>
+            <li style="font-size: 35pt;"><a>Portfolio</a></li>
+            <br>
+            <br>
+            <br>
+            <li><a class="mainText" href="{% url 'main:home' %}">Introduce</a></li>
+            <li><a class="mainText" href="{% url 'main:syugpt' %}">SYU_GPT</a></li>
+            <li><a class="mainText" href="{% url 'main:gabean' %}">GaBean</a></li>
+        </ol>
+    </div>
+    <div class="second">
+        <!-- GaBean -->
+        <a href="https://syu-gpt.streamlit.app/" target="_blank">
+            <div class="logo">
+                <img src="../static/photo/Logo.png" alt="Your Logo" style="width: 8%; margin-top: 30px; margin-bottom: 0px;">
+            </div>
+        </a>
+        <p style="font-size: 11pt;">⬆ 사진을 클릭하시면 해당 웹 사이트로 이동합니다.</p>
+
+        <!-- GaBean 소개 -->
+        <div class="content">
+            <br>
+            <span class="boldText" style="font-size: 18pt;">SYU_GPT</span>
+            <br>
+            삼육대학교의 다양한 정보를 질의 응답할 수 있는 <span class="boldText">GPT 기반</span> 챗봇입니다.
+            <br>
+            <span class="boldText">LangChain의 RAG 모델</span>과 <span class="boldText2">HuggingFace Embedding</span>을 이용한 프롬프트 엔지니어링 및 데이터 인덱싱을 진행하였습니다.
+            <br>
+            <span class="boldText2">Gemini</span>를 활용하여 사용자 질문을 처리 및 답변하였고, <span class="boldText">LangSmith</span>를 이용하여 Output과 코드를 개선하였습니다.
+            <br>
+            <br>
+            <div class="link-container">
+                <div>
+                    <a href="https://github.com/y2chan/SYU_GPT" target="_blank"><img class="icon" src="../static/photo/github.png">깃허브 방문하기</a>
+                    <br>
+                    <a href="https://shaded-zoo-3c5.notion.site/300aa1165c0f46fe953327e5cdabcb9e" target="_blank"><img class="icon" src="../static/photo/notion.png">에서 더 자세한 이야기 듣기</a>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <h3 style="font-size: 15pt; margin-top: 60px; margin-bottom: 50px;">🔻 아래는 제가 구현했던 웹 사이트를 iframe으로 임베딩 하였습니다.</h3>
+        <!-- 웹 사이트 임베딩 사용 -->
+        <div class="notion-page-content" style="flex-shrink: 0; flex-grow: 1; max-width: 100%; display: flex; align-items: flex-start; flex-direction: column; font-size: 16px; line-height: 1.5; width: 100%; z-index: 4; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin-bottom: 100px;"><div data-block-id="25c419c6-51ce-41b4-a66f-2284ae1fb2c6" class="notion-selectable notion-embed-block" style="width: 1100px; max-width: 1100px; align-self: center; margin-top: 4px; margin-bottom: 4px; transition-property: width; transition-duration: 270ms; transition-timing-function: ease;"><div contenteditable="false" data-content-editable-void="true" role="figure" aria-labelledby="id_4" embed-ghost=""><div style="display: flex;"><div class="notion-cursor-default" style="position: relative; overflow: hidden; flex-grow: 1;"><div style="position: relative; display: flex; justify-content: center; width: 100%; min-height: 100px; height: 700px;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px;"><div style="width: 100%; height: 100%;"><div style="position: relative; cursor: pointer;"><div style="position: relative;"><div style="display: block; pointer-events: auto; width: 100%;"><div style="position: relative; display: flex; justify-content: center; width: 100%; min-height: 100px; height: 700px;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px;"><div style="width: 100%; height: 100%;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto;"><iframe src="https://syu-gpt.streamlit.app/?embed=true" frameborder="0" sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin allow-storage-access-by-user-activation allow-popups-to-escape-sandbox" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: rgb(25, 25, 25);"></iframe></div></div></div></div></div></div></div></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; left: 0px; top: 0px; z-index: 1; height: 100%; width: 15px; cursor: col-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); width: 6px; height: 48px; max-height: 50%;"></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; right: 0px; top: 0px; z-index: 1; height: 100%; width: 15px; cursor: col-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); width: 6px; height: 48px; max-height: 50%;"></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; right: 0px; z-index: 2; bottom: 0px; height: 20px; width: 20px; cursor: nwse-resize;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="cornerResize" style="width: 20px; height: 20px; display: block; fill: rgba(0, 0, 0, 0.65); flex-shrink: 0; stroke: rgba(255, 255, 255, 0.5); opacity: 0; position: relative; bottom: 3px; left: -3px; transform: none;"><path fill-rule="evenodd" stroke-width="1.5" d="M 14 0C 12.8955 0 12 0.895447 12 2L 12 12L 2 12C 0.895508 12 0 12.8954 0 14C 0 15.1046 0.895508 16 2 16L 14 16C 15.1045 16 16 15.1046 16 14L 16 2C 16 0.895447 15.1045 0 14 0Z"></path></svg></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; left: 0px; z-index: 2; bottom: 0px; height: 20px; width: 20px; cursor: nesw-resize;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="cornerResize" style="width: 20px; height: 20px; display: block; fill: rgba(0, 0, 0, 0.65); flex-shrink: 0; stroke: rgba(255, 255, 255, 0.5); opacity: 0; position: relative; bottom: 3px; left: 3px; transform: rotate(90deg);"><path fill-rule="evenodd" stroke-width="1.5" d="M 14 0C 12.8955 0 12 0.895447 12 2L 12 12L 2 12C 0.895508 12 0 12.8954 0 14C 0 15.1046 0.895508 16 2 16L 14 16C 15.1045 16 16 15.1046 16 14L 16 2C 16 0.895447 15.1045 0 14 0Z"></path></svg></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; bottom: 0px; z-index: 1; width: 100%; height: 15px; cursor: row-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); height: 6px; width: 48px; max-width: 50%;"></div></div></div><div style="position: absolute; top: 4px; right: 4px; border-radius: 4px; color: white; fill: white; font-size: 11.5px; background: rgba(0, 0, 0, 0.6); display: flex; white-space: nowrap; height: 26px; max-width: calc(100% - 16px); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 300ms ease-in 0s; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; z-index: 2;"><div role="button" tabindex="0" aria-label="댓글" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="speechBubbleFilled" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M4.32 15.424c.39 0 .677-.192 1.149-.609l2.344-2.064h4.116c2.057 0 3.213-1.19 3.213-3.22V4.22c0-2.03-1.156-3.22-3.213-3.22H3.213C1.163 1 0 2.19 0 4.22V9.53c0 2.037 1.196 3.22 3.165 3.22h.28v1.675c0 .608.322.998.875.998zm.342-1.531v-1.949c0-.403-.178-.56-.56-.56H3.26c-1.285 0-1.9-.65-1.9-1.894V4.26c0-1.243.615-1.893 1.9-1.893h8.627c1.278 0 1.893.65 1.893 1.894v5.23c0 1.243-.615 1.893-1.893 1.893h-4.15c-.417 0-.622.068-.909.369l-2.167 2.14zm-.567-8.668h6.884a.433.433 0 00.423-.438.425.425 0 00-.423-.417H4.095a.419.419 0 00-.417.417c0 .24.184.438.417.438zm0 2.167h6.884a.427.427 0 000-.855H4.095a.425.425 0 00-.417.424c0 .24.184.43.417.43zm0 2.173h4.484c.24 0 .424-.191.424-.423 0-.24-.185-.431-.424-.431H4.095a.422.422 0 00-.417.43.42.42 0 00.417.424z"></path></svg></div><div role="button" tabindex="0" aria-label="맞춤" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="alignCenter" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M14.44 15.325H1.554a.598.598 0 01-.602-.602c0-.335.267-.601.602-.601H14.44c.334 0 .608.266.608.601a.604.604 0 01-.608.602zm0-13.447H1.554a.598.598 0 01-.602-.601c0-.335.267-.602.602-.602H14.44c.334 0 .608.267.608.602a.604.604 0 01-.608.601zm-8.736 10.34h4.738c1.12 0 1.776-.65 1.776-1.905V5.687c0-1.254-.656-1.905-1.922-1.905H5.704c-1.266 0-1.922.65-1.922 1.905v4.626c0 1.254.656 1.905 1.922 1.905zm.07-1.149c-.545 0-.843-.28-.843-.85V5.78c0-.568.298-.85.843-.85h4.452c.539 0 .843.282.843.85v4.44c0 .568-.304.85-.697.85H5.774z"></path></svg><svg role="graphics-symbol" viewBox="0 0 30 30" class="chevronDown" style="width: 8px; height: 100%; display: block; fill: white; flex-shrink: 0; margin-left: 4px;"><polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon></svg></div><div role="button" tabindex="0" aria-label="캡션" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="caption" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M2.87 8.975h6.74c1.119 0 1.775-.65 1.775-1.904V2.444c0-1.254-.656-1.904-1.922-1.904H2.871C1.605.54.949 1.19.949 2.444V7.07c0 1.254.656 1.904 1.922 1.904zm.07-1.148c-.544 0-.843-.282-.843-.85v-4.44c0-.568.299-.849.844-.849h6.451c.54 0 .844.281.844.85v4.44c0 .567-.305.849-.697.849H2.94zm-1.39 4.386h12.893a.604.604 0 00.608-.601.604.604 0 00-.608-.602H1.55a.598.598 0 00-.601.602c0 .335.266.601.601.601zm8.49 3.247H1.55a.598.598 0 01-.601-.601c0-.335.266-.602.601-.602h8.49c.336 0 .609.267.609.602a.604.604 0 01-.608.601z"></path></svg></div><div role="button" tabindex="0" aria-label="원본" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="alias" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></div><div role="button" tabindex="0" style="user-select: none; transition: opacity 200ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 24px; height: 24px; border-radius: 4px; fill: rgba(255, 255, 255, 0.443);"><svg role="graphics-symbol" viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0;"><g><path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path><path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path><path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path></g></svg></div></div><div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0, 0, 0, 0.6); border-radius: 4px; opacity: 0; transition: opacity 300ms ease-in 0s; overflow: hidden;"><div aria-disabled="true" role="button" tabindex="-1" class="altTextBlockButton" aria-label="대체 텍스트를 보고 편집하려면 클릭하세요." style="user-select: none; transition: background 20ms ease-in 0s; cursor: default; padding: 4px 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.2px; color: white;">ALT</div></div></div><div style="position: relative; left: 0px;"></div></div></div></div></div></div></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.hash) {
+            var hash = window.location.hash;
+            var element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView();
+            }
+        }
+    });
+</script>
+<!-- 위로 스크롤 하기 -->
+<a style="display: scroll; position: fixed; bottom: 50px; right: 50px;" rel="nofollow" href="#" onclick="scrollToTop(); return false;" style="font-size: 2.0em">
+    <img src="../static/photo/top.png">
+</a>
+<script>
+    function scrollToTop() {
+        // 'second' div의 스크롤을 맨 위로 이동시키기
+        document.querySelector('.second').scrollTop = 0;
+    }
+</script>
+</body>
+</html>

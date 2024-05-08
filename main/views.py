@@ -22,6 +22,10 @@ NAVER_CLIENT_SECRET = os.getenv('NAVER_CLIENT_SECRET')
 
 def home(request):
     return render(request, 'home.html')
+
+def syugpt(request):
+    return render(request, "syugpt.html")
+
 def get_current_base_datetime():
     now = timezone.now()
     current_hour = now.hour
