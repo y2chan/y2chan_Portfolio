@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Portfolio</title>
@@ -16,43 +16,157 @@
             font-family: 'MyCustomFont', sans-serif;
             align-items: center;
             text-align: center;
+            overflow-y: hidden;
         }
+
         ul {
             list-style-type: none;
             width: 50%;
-            margin: 0 auto; /* 이 부분을 추가하면 중앙 정렬됩니다. */
-            padding-left: 0; /* 기본적으로 ul에는 padding이 있을 수 있으므로 제거해줍니다. */
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .container {
+          display: flex;
+          height: 70vh;
+          min-height: 750px;
+          min-width: 800px;
+          background-color: #f8f9fa
+        }
+
+        .mainText {
+          text-decoration: none;
+          color: white;
+        }
+
+        .mainText:hover {
+          color: black;
+        }
+
+        .main {
+          font-size: 50px;
+          font-weight: 600;
+          color: white;
+          text-align: center;
+          border-bottom: 1px solid grey;
+          margin: 0;
+          min-width: 900px;
+          height: 100px;
+          min-height: 100px;
+          line-height: 100px;
+          background: linear-gradient(45deg, #e599f7, #b197fc);
+          border-radius: 5px 5px 0px 0px;
+        }
+
+        .first > ol {
+          width: 100px;
+          margin-top: 20px;
+
+        }
+
+        .first > ol > li {
+          padding: auto;
+          list-style:none;
+          font-size: 35px;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+
+        .first, .second {
+          height: 100vh; /* 높이를 화면 크기에 맞춤 */
+          overflow-y: auto; /* 내부 스크롤 활성화 */
+        }
+
+        .first {
+          background: linear-gradient(to top, #748ffc, #9775fa);
+          border-right: 1px solid grey;
+          width: 15vw;
+          min-width: 20%;
+          border-radius: 0px 0px 0px 5px;
+        }
+
+        .second {
+          background-color: #f8f9fa;
+          width: 85vw;
+          min-width: 800px;
+          border-radius: 0px 0px 5px 0px;
+        }
+
+        .title {
+          width: auto;
+          font-weight: 600;
+          align-items: center;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          margin: 20px 20px 0px 20px;
+        }
+
+        .feature {
+            font-size: 15px;
+        }
+
+        .content{
+          font-size: 17px;
+          margin: auto;
+          width: auto;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin-top: 35px;
+        }
+
+        .content > .boldText {
+          font-weight: 600;
+          color: #0074D9;
         }
     </style>
 </head>
 <body>
-
-<!-- Naver News API 사용 -->
-<h2>- Naver News -</h2>
-<h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
-
-<form action="{% url 'main:home' %}" method="get" style="margin-top: 40px;">
-    <h3>Keyword 입력하기</h3>
-    <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
-    <input type="submit" value="검색">
-</form>
-
-<h3 style="margin-top: 40px;">Result</h3>
-{% if news %}
-{% if query %}
-<h3 style="margin-bottom: 40px;">검색어: "{{ query }}"</h3>
-{% endif %}
-<ul>
-    {% for item in news %}
-    <li>
-        <a href="{{ item.link }}" target="_blank"><h3>◼ {{ item.title|safe }}</h3></a>
-        <p>📆 {{ item.pubDate }}</p>
-        <p style="border-bottom: 2px solid #ddd; padding: 8px;">▪ {{ item.description|safe }}</p>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<h2 style="margin-top: 20px;">검색 결과가 없습니다.</h2>
-{% endif %}
+<!-- 좌측 메뉴 -->
+<div class="container">
+    <div class="first">
+        <ol>
+            <li><a><br></a></li>
+            <li><a class="mainText" href="{% url 'main:home' %}">Introduce</a></li>
+            <li><a class="mainText" href="LYS3.html">SYU_GPT</a></li>
+            <li><a class="mainText" href="{% url 'main:gabean' %}">GaBean</a></li>
+        </ol>
+    </div>
+    <div class="second">
+        <!-- 자기소개 -->
+        <div class="title">
+            <img class="image" src="../static/photo/me.jpg" style="width: 15%; margin-top: 10px;">
+            <br>
+            <div class="feature"> 😳 Name: 양이찬</div>
+            <div class="feature"> 🙋‍♂️️️ MBTI: INTJ</div>
+            <div class="feature"> 📞️️️ 010-3740-6153</div>
+            <div class="feature"> 📧 wcn07062@naver.com</div>
+            <div class="feature"> Python / Django / Nginx / Docker / MySQL / LangChain 기초 / OPEN API 활용</div>
+            <div class="iconBox">
+                <a href="https://github.com/y2chan" target="_blank"><img class="icon" src="../static/photo/github.png" style="width: 9%;"></a>
+            </div>
+        </div>
+        <div class="content">
+            <span class="boldText">HI!</span>
+            <br>
+            신입 Back-End 개발자 <span class="boldText">양이찬</span>입니다.
+            <br>
+            <span class="boldText">Django Framework</span>로 개인 프로젝트 개발과 배포를 진행했습니다.
+            <br>
+            Linux 기반 서버 배포 및 유지 보수가 가능합니다.
+            <br>
+            <span class="boldText">Nginx</span>와 <span class="boldText">Docker</span>를 활용하여 컨테이너를 분리한 트래픽 분산으로 효율적인 서버 관리가 가능합니다.
+            <br>
+            <span class="boldText">Rest API(OPEN API)</span>를 적극 활용할 수 있습니다.
+            <br>
+            <span class="boldText">Back-End 개발자</span>가 되기 위해  <span class="boldText">LangChain</span>을 공부중입니다.
+            <br>
+            <h3>
+                함께 열심히 달려봐요! 🤙
+            </h3>
+        </div>
+    </div>
+</div>
 </body>
 </html>

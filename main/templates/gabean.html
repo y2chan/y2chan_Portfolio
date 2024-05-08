@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>GaBean</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('/static/fonts/SEOLEIMcool.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'MyCustomFont', sans-serif;
+            align-items: center;
+            text-align: center;
+            overflow-y: hidden;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 50%;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .container {
+          display: flex;
+          height: 70vh;
+          min-height: 100%;
+          min-width: 800px;
+          background-color: #f8f9fa
+        }
+
+        .mainText {
+          text-decoration: none;
+          color: white;
+        }
+
+        .mainText:hover {
+          color: black;
+        }
+
+        .main {
+          font-size: 50px;
+          font-weight: 600;
+          color: white;
+          text-align: center;
+          border-bottom: 1px solid grey;
+          margin: 0;
+          min-width: 900px;
+          height: 100px;
+          min-height: 100px;
+          line-height: 100px;
+          background: linear-gradient(45deg, #e599f7, #b197fc);
+          border-radius: 5px 5px 0px 0px;
+        }
+
+        .first > ol {
+          width: 100px;
+          margin-top: 20px;
+
+        }
+
+        .first > ol > li {
+          padding: auto;
+          list-style:none;
+          font-size: 35px;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+
+        .first, .second {
+          height: 100vh; /* 높이를 화면 크기에 맞춤 */
+          overflow-y: auto; /* 내부 스크롤 활성화 */
+        }
+
+        .first {
+          background: linear-gradient(to top, #748ffc, #9775fa);
+          border-right: 1px solid grey;
+          width: 15vw;
+          min-width: 20%;
+          border-radius: 0px 0px 0px 5px;
+        }
+
+        .second {
+          background-color: #f8f9fa;
+          width: 85vw;
+          min-width: 800px;
+          border-radius: 0px 0px 5px 0px;
+        }
+
+        .content{
+          font-size: 20px;
+          margin: auto;
+          width: auto;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin-top: 60px;
+        }
+
+        .content > .boldText {
+          font-weight: 600;
+          color: #0074D9;
+        }
+
+        .content > .boldText2 {
+          font-weight: 600;
+          color: #8FDB19;
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .icon {
+            width: 5%; /* 아이콘 크기 설정 */
+            vertical-align: middle; /* 텍스트 줄과 아이콘의 세로 중앙 정렬 */
+        }
+    </style>
+</head>
+<body>
+<!-- 좌측 메뉴 -->
+<div class="container">
+    <div class="first">
+        <ol>
+            <li><a><br></a></li>
+            <li><a class="mainText" href="{% url 'main:home' %}">Introduce</a></li>
+            <li><a class="mainText" href="LYS3.html">SYU_GPT</a></li>
+            <li><a class="mainText" href="{% url 'main:gabean' %}">GaBean</a></li>
+        </ol>
+    </div>
+    <div class="second">
+        <!-- GaBean -->
+        <a href="https://gabean.kr/" target="_blank">
+            <div class="logo">
+                <img src="../static/photo/GaBean.png" alt="Your Logo" style="width: 15%; margin-top: 30px; margin-bottom: 0px;">
+            </div>
+        </a>
+        <p style="font-size: 11pt;">⬆ 사진을 클릭하시면 해당 웹 사이트로 이동합니다.</p>
+
+        <!-- GaBean 소개 -->
+        <div class="content">
+            <br>
+            <span class="boldText" style="font-size: 18pt;">Ga</span><span class="boldText2" style="font-size: 18pt;">Bean</span>
+            <br>
+            <span class="boldText">Guide</span>For<span class="boldText2">Bean</span>의 줄임말로 신입생(콩)들을 안내하기 위한 웹 사이트입니다.
+
+            <br>
+            Nginx와 Docker을 활용한 인프라 구축 및 <span class="boldText">Load Balancing</span>으로 트래픽을 조절하였습니다.
+            <br>
+            일일 최대 트래픽 202명, <span class="boldText">총 트래픽 2천명 이상</span>을 달성하였습니다.
+            <br>
+            <span class="boldText">Rest API(OPEN API)</span>를 적극 활용할 수 있습니다.
+            <br>
+            캠퍼스맵, 후문, 오늘 뭐 먹지?, 학교 정보(수강, 졸업, 도서관), 교통(버스, 지하철, 셔틀버스)
+            <br>
+            콩들의 소리, SYU 뉴스, AI 문서 요약 서비스 등의 기능을 개발하였습니다.
+            <br>
+            <br>
+            <div class="link-container">
+                <div>
+                    <a href="https://www.sunews.kr/2024/03/12/%EA%B0%80%EB%B9%88-%EA%B0%9C%EB%B0%9C-%EC%96%91%EC%9D%B4%EC%B0%AC-%ED%95%99%EC%9A%B0/" target="_blank">📰 신문기사 방문하기</a>
+                    <br>
+                    <a href="https://github.com/y2chan/GuideForBean" target="_blank"><img class="icon" src="../static/photo/github.png">깃허브 방문하기</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <h3 style="font-size: 17pt; margin-top: 60px; margin-bottom: 50px;">🔻 아래는 제가 활용했던 API를 간단하게 구현하였습니다.</h3>
+        <!-- 날씨 API 사용 -->
+        <h2 style="font-size: 25pt;">- 날씨 API -</h2>
+        <ul style="margin-bottom: 80px;">
+            <li>{{ city }} (삼육대학교)</li>
+            <li>{{ weather_info.today_date }} {{ weather_info.current_time }}</li>
+            <li style="font-size: 20pt;">{{ weather_info.temperature }}°C / {{ weather_info.precipitation_type }}</li>
+            <li style="font-size: 11pt;">{{ weather_info.weather_status }}, {{ weather_info.wind_speed }}</li>
+        </ul>
+
+        <!-- 지하철 API 사용 -->
+        <h2 id="SubwayAPI" style="font-size: 25pt;">- 지하철 API -</h2>
+        <h4>지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
+        <form action="{% url 'main:gabean' %}#SubwayAPI" method="get" style="margin-top: 40px;">
+            <h3>지하철역명 입력하기</h3>
+            <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}" placeholder="지하철 역 입력">
+            <input type="submit" value="검색">
+        </form>
+        <h3 style="margin-top: 40px;">Result</h3>
+        {% if subway_info %}
+        {% for station, arrivals in subway_info.items %}
+        <h2>{{ station }}역</h2>
+        <ul style="margin-bottom: 80px;">
+            {% for arrival in arrivals %}
+            <li>
+                <p>{{ arrival.trainLineNm }} / {{ arrival.recptnDt }}</p>
+                <p>{{ arrival.arvlMsg2 }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+        {% else %}
+        <h3 style="margin-bottom: 80px;">지하철 정보가 없습니다.</h3>
+        {% endif %}
+
+        <!-- Naver News API 사용 -->
+        <h2 id="naverNewsAPI" style="font-size: 25pt;">- Naver News API -</h2>
+        <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
+
+        <form action="{% url 'main:gabean' %}#naverNewsAPI" method="get" style="margin-top: 40px;">
+            <h3>Keyword 입력하기</h3>
+            <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
+            <input type="submit" value="검색">
+        </form>
+
+        <h3 style="margin-top: 40px;">Result</h3>
+        {% if news %}
+        {% if query %}
+        <h3 style="margin-bottom: 40px;">검색어: "{{ query }}"</h3>
+        {% endif %}
+        <ul style="margin-bottom: 80px;">
+            {% for item in news %}
+            <li>
+                <a href="{{ item.link }}" target="_blank"><h3>◼ {{ item.title|safe }}</h3></a>
+                <p>📆 {{ item.pubDate }}</p>
+                <p style="border-bottom: 2px solid #ddd; padding: 8px;">▪ {{ item.description|safe }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h3 style="margin-top: 20px; margin-bottom: 80px;">검색 결과가 없습니다.</h3>
+        {% endif %}
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.hash) {
+            var hash = window.location.hash;
+            var element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView();
+            }
+        }
+    });
+</script>
+<!-- 위로 스크롤 하기 -->
+<a style="display: scroll; position: fixed; bottom: 50px; right: 50px;" rel="nofollow" href="#" onclick="scrollToTop(); return false;" style="font-size: 2.0em">
+    <img src="../static/photo/top.png">
+</a>
+<script>
+    function scrollToTop() {
+        // 'second' div의 스크롤을 맨 위로 이동시키기
+        document.querySelector('.second').scrollTop = 0;
+    }
+</script>
+</body>
+</html>
