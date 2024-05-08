@@ -28,19 +28,19 @@
 <body>
 
 <!-- Naver News API 사용 -->
-<h1>- Naver News -</h1>
-<h4>Keyword를 입력하면 가장 최신/관련 5개의 뉴스 기사를 가져옵니다.</h4>
+<h2>- Naver News -</h2>
+<h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
 
-<form action="{% url 'main:home' %}" method="get">
-    <h2>Keyword 입력하기</h2>
+<form action="{% url 'main:home' %}" method="get" style="margin-top: 40px;">
+    <h3>Keyword 입력하기</h3>
     <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
     <input type="submit" value="검색">
 </form>
 
-<h2>Result</h2>
+<h3 style="margin-top: 40px;">Result</h3>
 {% if news %}
 {% if query %}
-<h2 style="margin-bottom: 40px;">검색어: "{{ query }}"</h2>
+<h3 style="margin-bottom: 40px;">검색어: "{{ query }}"</h3>
 {% endif %}
 <ul>
     {% for item in news %}
@@ -52,7 +52,7 @@
     {% endfor %}
 </ul>
 {% else %}
-<h2 style="margin-top: 50px;">검색 결과가 없습니다.</h2>
+<h2 style="margin-top: 20px;">검색 결과가 없습니다.</h2>
 {% endif %}
 </body>
 </html>

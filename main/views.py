@@ -24,7 +24,7 @@ def home(request):
     query = request.GET.get('query', '')
 
     if query:
-        params = {'query': query, 'display': 5}
+        params = {'query': query, 'display': 3}
         headers = {
             'X-Naver-Client-Id': NAVER_CLIENT_ID,
             'X-Naver-Client-Secret': NAVER_CLIENT_SECRET
