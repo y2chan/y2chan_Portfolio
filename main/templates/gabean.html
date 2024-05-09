@@ -171,6 +171,63 @@
                 background-color: #004085;
                 box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
             }
+
+            .input_custom {
+              position: relative;
+              width: 300px;
+              margin: 0 auto;
+              margin-top: 30px;
+            }
+
+            .input_custom input {
+              font-size: 15px;
+              color: #222222;
+              width: 300px;
+              border: none;
+              border-bottom: solid #aaaaaa 1px;
+              padding-bottom: 10px;
+              text-align: center;
+              position: relative;
+              background: none;
+              z-index: 5;
+            }
+
+            input::placeholder { color: #aaaaaa; }
+            input:focus { outline: none; }
+
+            .input_custom span {
+              display: block;
+              position: absolute;
+              bottom: 0;
+              left: 50%;  /* right로만 바꿔주면 오 - 왼 */
+              background-color: #666;
+              width: 0;
+              height: 2px;
+              border-radius: 2px;
+              transform: translateX(-50%);
+              transition: 0.5s;
+            }
+
+            .input_custom label {
+            position: absolute;
+            color: #aaa;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            bottom: 8px;
+            transition: all .2s;
+            }
+
+            .input_custom input:focus ~ label, input:valid ~ label {
+            font-size: 16px;
+            bottom: 40px;
+            color: #666;
+            font-weight: bold;
+            }
+
+            .input_custom input:focus ~ span, input:valid ~ span {
+            width: 100%;
+            }
     </style>
 </head>
 <body>
@@ -234,7 +291,7 @@
         <div class="button_ai" id="btnNews">Naver News API</div>
         <div class="button_ai" id="btnSubway">지하철 API</div>
         <div class="button_ai" id="btnBus">버스 API</div>
-        <hr style="width: 80%; margin-top: 50px;">
+        <hr style="width: 80%; margin-top: 30px; margin-bottom: 50px;">
 
         <!-- 날씨 API 사용 -->
         <h2 id="WeatherAPI" style="font-size: 25pt;">- 날씨 API -</h2>
@@ -247,13 +304,14 @@
 
         <!-- Naver News API 사용 -->
         <h2 id="NaverNewsAPI" style="font-size: 25pt;">- Naver News API -</h2>
-        <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
-
-        <form action="{% url 'main:gabean' %}#NaverNewsAPI" method="get" style="margin-top: 40px;">
-            <h3>Keyword 입력하기</h3>
-            <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
-            <input type="submit" value="검색">
+        <form action="{% url 'main:gabean' %}#NaverNewsAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+            <div class="input_custom">
+                <input type="text" name="query" value="{{ query }}">
+                <label>Keyword 입력</label>
+                <span></span>
+            </div>
         </form>
+        <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
 
         <h3 style="margin-top: 40px;">Result</h3>
         {% if news %}
@@ -275,12 +333,14 @@
 
         <!-- 지하철 API 사용 -->
         <h2 id="SubwayAPI" style="font-size: 25pt;">- 지하철 API -</h2>
-        <h4>지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
-        <form action="{% url 'main:gabean' %}#SubwayAPI" method="get" style="margin-top: 40px;">
-            <h3>지하철역명 입력하기</h3>
-            <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}" placeholder="지하철 역 입력">
-            <input type="submit" value="검색">
+        <form action="{% url 'main:gabean' %}#SubwayAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+            <div class="input_custom">
+                <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}">
+                <label>지하철 역 입력</label>
+                <span></span>
+            </div>
         </form>
+        <h4>지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
         <h3 style="margin-top: 40px;">Result</h3>
         {% if subway_info %}
         {% for station, arrivals in subway_info.items %}
