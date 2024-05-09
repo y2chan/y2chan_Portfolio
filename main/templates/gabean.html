@@ -100,7 +100,7 @@
           text-align: center;
           justify-content: center;
           align-items: center;
-          margin-top: 60px;
+          margin-top: 20px;
         }
 
         .content > .boldText {
@@ -124,6 +124,53 @@
             width: 5%; /* 아이콘 크기 설정 */
             vertical-align: middle; /* 텍스트 줄과 아이콘의 세로 중앙 정렬 */
         }
+
+        hr {
+            width: 50%;
+        }
+
+        .info-bus {
+          display: flex;
+          min-height: 100%;
+          min-width: 800px;
+          background-color: #f8f9fa
+          margin-bottom: 50px;
+        }
+
+        .direction {
+          background-color: #f8f9fa;
+          width: 85vw;
+          min-width: 400px;
+          border-radius: 0px 0px 5px 0px;
+        }
+
+            .button_ai {
+                display: inline-block;
+                padding: 12px 24px;
+                width: 13%;
+                font-size: 16px;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                background-color: #007BFF;
+                border-radius: 4px;
+                border: none;
+                transition: all 0.3s ease 0s;
+                cursor: pointer;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+                margin-right: 5px;
+            }
+
+            .button_ai:hover {
+                background-color: #0056b3;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            }
+
+            .button_ai:active {
+                background-color: #004085;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            }
     </style>
 </head>
 <body>
@@ -181,11 +228,16 @@
                     <br>
                 </div>
             </div>
-            <br>
         </div>
-        <h3 style="font-size: 17pt; margin-top: 60px; margin-bottom: 50px;">🔻 아래는 제가 활용했던 API를 간단하게 구현하였습니다.</h3>
+        <h3 style="font-size: 17pt; margin-bottom: 30px;">🔻 아래는 제가 활용했던 API를 간단하게 구현하였습니다.</h3>
+        <div class="button_ai" id="btnWeather">날씨 API</div>
+        <div class="button_ai" id="btnNews">Naver News API</div>
+        <div class="button_ai" id="btnSubway">지하철 API</div>
+        <div class="button_ai" id="btnBus">버스 API</div>
+        <hr style="width: 80%; margin-top: 50px;">
+
         <!-- 날씨 API 사용 -->
-        <h2 style="font-size: 25pt;">- 날씨 API -</h2>
+        <h2 id="WeatherAPI" style="font-size: 25pt;">- 날씨 API -</h2>
         <ul style="margin-bottom: 80px;">
             <li>{{ city }} (삼육대학교)</li>
             <li>{{ weather_info.today_date }} {{ weather_info.current_time }}</li>
@@ -194,10 +246,10 @@
         </ul>
 
         <!-- Naver News API 사용 -->
-        <h2 id="naverNewsAPI" style="font-size: 25pt;">- Naver News API -</h2>
+        <h2 id="NaverNewsAPI" style="font-size: 25pt;">- Naver News API -</h2>
         <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
 
-        <form action="{% url 'main:gabean' %}#naverNewsAPI" method="get" style="margin-top: 40px;">
+        <form action="{% url 'main:gabean' %}#NaverNewsAPI" method="get" style="margin-top: 40px;">
             <h3>Keyword 입력하기</h3>
             <input type="text" name="query" placeholder="검색어를 입력하세요." value="{{ query }}">
             <input type="submit" value="검색">
@@ -246,9 +298,67 @@
         <h3 style="margin-bottom: 80px;">지하철 정보가 없습니다.</h3>
         {% endif %}
 
-        <!-- 버스 API 사용 -->
+        <!-- 카카오맵 API 사용 -->
+        <h2 id="BUSAPI" style="font-size: 25pt; margin-bottom: 30px;">- 버스 API -</h2>
+        <div class="info-bus">
+            <div class="direction">
+                <h2 style="font-size: 20pt; margin-bottom: 30px;">학교에서 나가는 방향</h2>
+                {% for stNm, bus_list in bus_info.direction_1.items %}
+                <h3>{{ stNm }}</h3>
+                <hr>
+                {% for bus in bus_list %}
+                <ul>
+                    <li style="list-style-type: none;">
+                        <h2>{{ bus.rtNm }}</h2>
+                        <p>{{ bus.arrmsg1 }}</p>
+                        <p>{{ bus.arrmsg2 }}</p>
+                    </li>
+                </ul>
+                {% endfor %}
+                <hr>
+                {% endfor %}
+            </div>
+            <div class="direction">
+                <h2 style="font-size: 20pt; margin-bottom: 30px;">학교로 오는 방향</h2>
+                {% for stNm, bus_list in bus_info.direction_2.items %}
+                <h3>{{ stNm }}</h3>
+                <hr>
+                {% for bus in bus_list %}
+                <ul>
+                    <li style="list-style-type: none;">
+                        <h2>{{ bus.rtNm }}</h2>
+                        <p>{{ bus.arrmsg1 }}</p>
+                        <p>{{ bus.arrmsg2 }}</p>
+                    </li>
+                </ul>
+                {% endfor %}
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+        <p style="margin-top: 40px; margin-bottom: 50px;">API 출처 : 공공데이터포털, NAVER Developers </p>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('btnWeather').addEventListener('click', function() {
+            document.getElementById('WeatherAPI').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('btnNews').addEventListener('click', function() {
+            document.getElementById('NaverNewsAPI').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('btnSubway').addEventListener('click', function() {
+            document.getElementById('SubwayAPI').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('btnBus').addEventListener('click', function() {
+            document.getElementById('BUSAPI').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         if (window.location.hash) {

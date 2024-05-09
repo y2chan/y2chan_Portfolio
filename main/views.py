@@ -1,14 +1,14 @@
 import os
 from django.shortcuts import render
-from django.conf import settings
 from datetime import datetime, timedelta
 from django.utils import timezone
-from django.http import JsonResponse
-from django.http import HttpResponse
 import requests
-import json
 from dotenv import load_dotenv
 import xml.etree.ElementTree as ET
+import logging
+from itertools import groupby
+
+logger = logging.getLogger(__name__)
 
 # 환경변수 파일 로드
 load_dotenv()
@@ -163,14 +163,13 @@ def gabean(request):
         }
     context['weather_info'] = weather_info
 
-    # 뉴스 API
+    # 뉴스 API 처리
     if query:
-        params = {'query': query, 'display': 3}
         headers = {
             'X-Naver-Client-Id': NAVER_CLIENT_ID,
             'X-Naver-Client-Secret': NAVER_CLIENT_SECRET
         }
-
+        params = {'query': query, 'display': 3}
         response = requests.get(url, headers=headers, params=params)
         result = response.json()
 
@@ -179,8 +178,6 @@ def gabean(request):
             item['description'] = item['description'].replace('<b>', '<strong>').replace('</b>', '</strong>')
             item['pubDate'] = datetime.strptime(item['pubDate'], '%a, %d %b %Y %H:%M:%S +0900').strftime('%Y년 %m월 %d일 %H시 %M분')
         context['news'] = result['items']
-    else:
-        context['news'] = []
 
     # 지하철 API
     if subway_name:
@@ -206,5 +203,57 @@ def gabean(request):
 
         context['subway_info'] = grouped_data
 
+    # 버스 API
+    handle_bus_api(context)  # 버스 API 처리를 별도의 함수로 분리 가정
 
     return render(request, 'gabean.html', context)
+
+def handle_bus_api(context):
+    api_key = BUS_API_KEY
+    bus_urls = [
+        # 삼육대후문.논골.한화아파트
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=222001597&busRouteId=100100039&ord=16", # 202
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=222001597&busRouteId=100100165&ord=22", # 1155
+        # 삼육대앞
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000055&busRouteId=100100039&ord=18", # 202
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000055&busRouteId=100100165&ord=24", # 1155
+        # 화랑대역1번출구
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000018&busRouteId=100100039&ord=106", # 202
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000018&busRouteId=100100165&ord=44", # 1155
+        # 태릉입구역7번출구.서울생활사박물관
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000017&busRouteId=100100165&ord=42", # 1155
+        # 석계역(석계역4번출구)
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=107000057&busRouteId=100100165&ord=40", # 1155
+        # 석계역1번출구.A
+        f"http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey={api_key}&stId=110000183&busRouteId=100100165&ord=38" # 1155
+    ]
+    grouped_data = {"direction_1": [], "direction_2": []}
+    try:
+        for api_url in bus_urls:
+            response = requests.get(api_url)
+            root = ET.fromstring(response.text)
+            data = {
+                "stNm": root.find(".//stNm").text,
+                "rtNm": root.find(".//rtNm").text,
+                "arrmsg1": root.find(".//arrmsg1").text,
+                "arrmsg2": root.find(".//arrmsg2").text,
+            }
+            if data["stNm"] in ["삼육대후문.논골.포레나별내", "삼육대앞"]:
+                grouped_data["direction_1"].append(data)
+            else:
+                grouped_data["direction_2"].append(data)
+        grouped_data["direction_1"] = group_by_stNm(grouped_data["direction_1"])
+        grouped_data["direction_2"] = group_by_stNm(grouped_data["direction_2"])
+        context['bus_info'] = grouped_data
+    except Exception as e:
+        context['bus_info'] = {'error': str(e)}
+
+def group_by_stNm(data):
+    # 먼저 데이터를 stNm 기준으로 정렬합니다.
+    sorted_data = sorted(data, key=lambda x: x['stNm'])
+    # 그룹화된 데이터를 딕셔너리 형태로 변환합니다.
+    grouped_data = {}
+    for key, group in groupby(sorted_data, key=lambda x: x['stNm']):
+        grouped_data[key] = list(group)
+    return grouped_data
+
