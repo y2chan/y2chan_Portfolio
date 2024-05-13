@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+    <link rel="icon" href="../../static/photo/me.jpg" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('/static/fonts/SEOLEIMcool.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'MyCustomFont', sans-serif;
+            align-items: center;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-radius: 0px 0px 5px 0px;
+            margin-bottom: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 50%;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .container {
+          height: 70vh;
+          min-height: 750px;
+          min-width: 800px;
+          background-color: #f8f9fa
+        }
+
+        .mainText {
+          text-decoration: none;
+          color: white;
+        }
+
+        .mainText:hover {
+          color: black;
+        }
+
+        .main {
+          font-size: 50px;
+          font-weight: 600;
+          color: white;
+          text-align: center;
+          border-bottom: 1px solid grey;
+          margin: 0;
+          min-width: 900px;
+          height: 100px;
+          min-height: 100px;
+          line-height: 100px;
+          background: linear-gradient(45deg, #e599f7, #b197fc);
+          border-radius: 5px 5px 0px 0px;
+        }
+
+        .first > ol {
+          display: flex;
+          align-items: center;
+          width: 100px;
+          margin-top: 20px;
+        }
+
+        .first > ol > li {
+          padding: 100%;
+          list-style:none;
+          font-size: 30px;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+
+        .first, .second {
+          width: 100vh; /* 높이를 화면 크기에 맞춤 */
+          height: 100vh; /* 높이를 화면 크기에 맞춤 */
+        }
+
+        .second {
+            width: 100%;
+        }
+
+        .first {
+          display: flex;
+          align-items: center;
+          background: linear-gradient(to top, #748ffc, #9775fa);
+          border-right: 1px solid grey;
+          width: 100%;
+          height: 18%;
+          min-width: 20%;
+          border-radius: 0px 0px 0px 5px;
+          overflow: hidden;
+        }
+
+        .content{
+          font-size: 20px;
+          margin: auto;
+          width: auto;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
+          margin-bottom: 50px;
+        }
+
+        .content > .boldText {
+          font-weight: 600;
+          color: #0074D9;
+        }
+
+        .content > .boldText2 {
+          font-weight: 600;
+          color: #8FDB19;
+        }
+
+        .content > .boldText3 {
+          font-weight: 600;
+          color: #6ea814
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .icon {
+            width: 5%; /* 아이콘 크기 설정 */
+            vertical-align: middle; /* 텍스트 줄과 아이콘의 세로 중앙 정렬 */
+        }
+
+        hr {
+            width: 50%;
+        }
+
+        .info-bus {
+          display: flex;
+          min-height: 100%;
+          min-width: 800px;
+          background-color: #f8f9fa
+          margin-bottom: 50px;
+        }
+
+        .direction {
+          background-color: #f8f9fa;
+          width: 85vw;
+          min-width: 400px;
+          border-radius: 0px 0px 5px 0px;
+          margin-top: 50px;
+        }
+
+        .direction > .boldText {
+          font-weight: 600;
+          color: #0074D9;
+        }
+
+        .direction > .boldText2 {
+          font-weight: 600;
+          color: #8FDB19;
+        }
+
+        .direction > .boldText3 {
+          font-weight: 600;
+          color: #6ea814
+        }
+
+        .button_ai {
+            display: inline-block;
+            padding: 12px 24px;
+            width: 15%;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 4px;
+            border: none;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+            margin-right: 5px;
+        }
+
+        .button_ai:hover {
+            background-color: #0056b3;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .button_ai:active {
+            background-color: #004085;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .input_custom {
+          position: relative;
+          width: 300px;
+          margin: 0 auto;
+          margin-top: 30px;
+        }
+
+        .input_custom input {
+          font-size: 15px;
+          color: #222222;
+          width: 300px;
+          border: none;
+          border-bottom: solid #aaaaaa 1px;
+          padding-bottom: 10px;
+          text-align: center;
+          position: relative;
+          background: none;
+          z-index: 5;
+        }
+
+        input::placeholder { color: #aaaaaa; }
+        input:focus { outline: none; }
+
+        .input_custom span {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 50%;  /* right로만 바꿔주면 오 - 왼 */
+          background-color: #666;
+          width: 0;
+          height: 2px;
+          border-radius: 2px;
+          transform: translateX(-50%);
+          transition: 0.5s;
+        }
+
+        .input_custom label {
+        position: absolute;
+        color: #aaa;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 20px;
+        bottom: 8px;
+        transition: all .2s;
+        }
+
+        .input_custom input:focus ~ label, input:valid ~ label {
+        font-size: 16px;
+        bottom: 40px;
+        color: #666;
+        font-weight: bold;
+        }
+
+        .input_custom input:focus ~ span, input:valid ~ span {
+        width: 100%;
+        }
+
+        @media (max-width: 1300px) {
+            .first-logo {
+                font-size: 20pt; /* 모든 li의 폰트 크기를 작게 조정 */
+            }
+        }
+
+        @media (max-width: 1300px) {
+            .mainText {
+                font-size: 20pt; /* 모든 li의 폰트 크기를 작게 조정 */
+            }
+
+            .first > ol {
+              display: flex;
+              align-items: center;
+              width: 100px;
+              margin-top: 20px;
+            }
+
+            .first > ol > li {
+              padding: 50%;
+              list-style:none;
+              font-size: 30px;
+              font-weight: 600;
+              margin-top: 10px;
+            }
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+<!-- Logo -->
+<img class="image" src="../../static/photo/y2chan.PNG" style="width: 100%; margin-bottom: 50px;">
+
+<!-- 좌측 메뉴 -->
+<!-- 자기소개 -->
+<div class="title">
+    <img class="image" src="../../static/photo/me.jpg" style="width: 15%; margin-top: 10px;">
+    <br>
+    <div class="feature"> 😳</div>
+    <div class="feature"> Name: 양이찬</div>
+    <br>
+    <div class="feature"> 🙋‍♂️️️</div>
+    <div class="feature"> MBTI: INTJ</div>
+    <br>
+    <div class="feature"> 📞️</div>
+    <div class="feature">️️ 010-3740-6153</div>
+    <br>
+    <div class="feature"> 📧</div>
+    <div class="feature"> wcn07062@naver.com</div>
+    <br>
+    <div class="feature"> Python / Django / Nginx / Docker</div>
+    <div class="feature"> MySQL / LangChain 기초 / OPEN API 활용</div>
+    <br>
+    <div class="iconBox">
+        <a href="https://github.com/y2chan" target="_blank"><img class="icon" src="../../static/photo/github.png" style="width: 4%;"></a>
+    </div>
+</div>
+<div class="content">
+    <span class="boldText">HI!</span>
+    <br>
+    신입 Back-End 개발자 <span class="boldText">양이찬</span>입니다.
+    <br>
+    저는 아래와 같은 개인 프로젝트 개발과 배포를 진행했습니다.
+    <br>
+    <br>
+    🔽 아래 버튼 클릭 시 토글 형식으로 작동합니다.
+    <br>
+    <br>
+    <button id="toggleGabean" class="button_ai" style="width: 20%;">GaBean 프로젝트 보기</button>
+    <button id="toggleSYUGPT" class="button_ai" style="width: 20%;">SYU_GPT 프로젝트 보기</button>
+    <br>
+    <div class="second">
+        <div id="gabean" class="hidden">
+            <!-- GaBean -->
+            <p style="font-size: 20pt;">⬇ 사진을 클릭하시면 해당 웹 사이트로 이동합니다.</p>
+            <a href="https://gabean.kr/" target="_blank">
+                <div class="logo">
+                    <img src="../../static/photo/GaBean.png" alt="Your Logo" style="width: 15%; margin-top: 30px; margin-bottom: 0px;">
+                </div>
+            </a>
+
+            <!-- GaBean 소개 -->
+            <div class="content">
+                <br>
+                <span class="boldText" style="font-size: 30pt;">Ga</span><span class="boldText2" style="font-size: 30pt;">Bean</span>
+                <br>
+                <span class="boldText">Guide</span>For<span class="boldText2">Bean</span>의 줄임말로 신입생(콩)들을<br> 안내하기 위한 웹 사이트입니다.
+
+                <br>
+                Nginx와 Docker을 활용한 인프라 구축 및 <br><span class="boldText">Load Balancing</span>으로 트래픽을 조절하였습니다.
+                <br>
+                일일 최대 트래픽 202명, <span class="boldText">총 트래픽 2천명 이상</span>을 달성하였습니다.
+                <br>
+                <span class="boldText">Rest API(OPEN API)</span>를 적극 활용하였습니다.
+                <br>
+                캠퍼스맵, 후문, 오늘 뭐 먹지?, 학교 정보(수강, 졸업, 도서관)
+                <br>교통(버스, 지하철, 셔틀버스), 콩들의 소리
+                <br>
+                SYU 뉴스, AI 문서 요약 서비스 등의 기능을 개발하였습니다.
+                <br>
+                <br>
+                <div class="link-container">
+                    <div>
+                        <a href="https://www.sunews.kr/2024/03/12/%EA%B0%80%EB%B9%88-%EA%B0%9C%EB%B0%9C-%EC%96%91%EC%9D%B4%EC%B0%AC-%ED%95%99%EC%9A%B0/" target="_blank">📰 신문기사<br>[인터뷰] 학교 정보 모은 웹사이트 ‘가빈’ 개발한 양이찬 학우</a>
+                        <br>
+                        <a href="https://github.com/y2chan/GuideForBean" target="_blank"><img class="icon" src="../../static/photo/github.png" style="width: 5%; margin: 0 auto;">깃허브 방문하기</a>
+                        <br>
+                        <a href="https://shaded-zoo-3c5.notion.site/Guide-For-Bean-GaBean-eaa814f90f644d6c8c75bdbcec7e4f58" target="_blank"><img class="icon" src="../../static/photo/notion.png" style="width: 8%; margin: 0 auto;">에서 더 자세한 이야기 듣기</a>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <h3 style="font-size: 25pt; margin-bottom: 30px;">🔻 아래는 제가 활용했던 API를 간단하게 구현하였습니다.</h3>
+            <div class="button_ai" id="btnWeather">날씨 API</div>
+            <div class="button_ai" id="btnNews">Naver News</div>
+            <div class="button_ai" id="btnSubway">지하철 API</div>
+            <div class="button_ai" id="btnBus">버스 API</div>
+            <hr style="width: 90%; margin-top: 30px; margin-bottom: 50px;">
+
+            <!-- 날씨 API 사용 -->
+            <div id="WeatherAPI" class="api-section">
+                <h2 style="font-size: 40pt;">- 날씨 API -</h2>
+                <ul style="margin-bottom: 80px;">
+                    <li style="font-size: 25pt;">{{ city }}<br>(삼육대학교)</li>
+                    <li style="font-size: 25pt;">{{ weather_info.today_date }} {{ weather_info.current_time }}</li>
+                    <li style="font-size: 35pt;">{{ weather_info.temperature }}°C / {{ weather_info.precipitation_type }}</li>
+                    <li style="font-size: 20pt;">{{ weather_info.weather_status }}, {{ weather_info.wind_speed }}</li>
+                </ul>
+            </div>
+
+            <!-- Naver News API 사용 -->
+            <div id="NaverNewsAPI" class="api-section">
+                <h2 style="font-size: 40pt;">- Naver News API -</h2>
+                <form action="{% url 'main_mobile:m_home' %}#NaverNewsAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+                    <div class="input_custom">
+                        <input type="text" name="query" value="{{ query }}">
+                        <label>Keyword 입력</label>
+                        <span></span>
+                    </div>
+                </form>
+                <h4 style="font-size: 20pt;">Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
+
+                <h3 style="margin-top: 40px; font-size: 30pt;">Result</h3>
+                {% if news %}
+                {% if query %}
+                <h3 style="margin-bottom: 40px; font-size: 30pt;">검색어: "{{ query }}"</h3>
+                {% endif %}
+                <ul style="margin-bottom: 80px;">
+                    {% for item in news %}
+                    <li>
+                        <a href="{{ item.link }}" target="_blank" style="font-size: 20pt;"><h3>◼ {{ item.title|safe }}</h3></a>
+                        <p style="font-size: 15pt;">📆 {{ item.pubDate }}</p>
+                        <p style="border-bottom: 2px solid #ddd; padding: 8px; font-size: 20pt;">▪ {{ item.description|safe }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <h3 style="margin-top: 20px; margin-bottom: 80px; font-size: 20pt;">검색 결과가 없습니다.</h3>
+                {% endif %}
+            </div>
+
+            <!-- 지하철 API 사용 -->
+            <div id="SubwayAPI" class="api-section">
+                <h2 style="font-size: 40pt;">- 지하철 API -</h2>
+                <form action="{% url 'main_mobile:m_home' %}#SubwayAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+                    <div class="input_custom">
+                        <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}">
+                        <label>지하철 역 입력</label>
+                        <span></span>
+                    </div>
+                </form>
+                <h4 style="font-size: 20pt;">지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
+                <h3 style="margin-top: 40px; font-size: 30pt;">Result</h3>
+                {% if subway_info %}
+                {% for station, arrivals in subway_info.items %}
+                <h2 style="font-size: 35pt;">{{ station }}역</h2>
+                <ul style="margin-bottom: 80px;">
+                    {% for arrival in arrivals %}
+                    <li>
+                        <p style="font-size: 20pt;">{{ arrival.trainLineNm }} <br> {{ arrival.recptnDt }}</p>
+                        <p style="font-size: 25pt;">{{ arrival.arvlMsg2 }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+                {% else %}
+                <h3 style="margin-bottom: 80px; font-size: 20pt;">지하철 정보가 없습니다.</h3>
+                {% endif %}
+            </div>
+            <!-- 버스 API 사용 -->
+            <div id="BUSAPI" class="api-section">
+                <h2 style="font-size: 40pt; margin-bottom: 30px;">- 버스 API -</h2>
+                <h4 style="font-size: 20pt;">삼육대학교 학생들이 가장 많이 이용하는 버스 정류장과 버스의 현재 정보입니다.</h4>
+                <div class="info-bus">
+                    <div class="direction">
+                        <h2 style="font-size: 35pt; margin-bottom: 30px;">학교에서 나가는 방향</h2>
+                        {% for stNm, bus_list in bus_info.direction_1.items %}
+                        <h3 style="margin-top: 50px; font-size: 30pt;">{{ stNm }}</h3>
+                        <hr style="width: 30%;">
+                        {% for bus in bus_list %}
+                        <ul>
+                            <li style="list-style-type: none;">
+                                <h2 style="font-size: 30pt;">{{ bus.rtNm }}</h2>
+                                <p style="font-size: 25pt;">{{ bus.arrmsg1 }}</p>
+                                <p style="font-size: 25pt;">{{ bus.arrmsg2 }}</p>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div class="direction">
+                        <h2 style="font-size: 35pt; margin-bottom: 30px; margin-top: 100px;">학교로 오는 방향</h2>
+                        {% for stNm, bus_list in bus_info.direction_2.items %}
+                        <h3 style="margin-top: 50px; font-size: 30pt;">{{ stNm }}</h3>
+                        <hr style="width: 30%;">
+                        {% for bus in bus_list %}
+                        <ul>
+                            <li style="list-style-type: none;">
+                                <h2 style="font-size: 30pt;">{{ bus.rtNm }}</h2>
+                                <p style="font-size: 25pt;">{{ bus.arrmsg1 }}</p>
+                                <p style="font-size: 25pt;">{{ bus.arrmsg2 }}</p>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 80px; margin-bottom: 50px; font-size: 20pt;">API 출처 : 공공데이터포털, NAVER Developers </p>
+        </div>
+        <div id="syu-gpt" class="hidden">
+            <!-- SYU_GPT -->
+            <p style="font-size: 20pt;">⬇ 사진을 클릭하시면 해당 웹 사이트로 이동합니다.</p>
+            <a href="https://syu-gpt.streamlit.app/" target="_blank">
+                <div class="logo">
+                    <img src="../../static/photo/Logo.png" alt="Your Logo" style="width: 7%; margin-top: 30px; margin-bottom: 0px;">
+                </div>
+            </a>
+
+            <!-- SYU_GPT 소개 -->
+            <div class="content">
+                <br>
+                <span class="boldText" style="font-size: 40pt;">SYU_GPT</span>
+                <br>
+                삼육대학교의 다양한 정보를 질의 응답할 수 있는 <span class="boldText">GPT 기반</span> 챗봇입니다.
+                <br>
+                <span class="boldText">LangChain의 RAG 모델</span>과 <span class="boldText2">HuggingFace Embedding</span>을 이용한 <br>프롬프트 엔지니어링 및 데이터 인덱싱을 진행하였습니다.
+                <br>
+                <span class="boldText2">Gemini</span>를 활용하여 사용자 질문을 처리 및 답변하였고, <br><span class="boldText">LangSmith</span>를 이용하여 Output과 코드를 개선하였습니다.
+                <br>
+                <br>
+                <div class="link-container">
+                    <div>
+                        <a href="https://github.com/y2chan/SYU_GPT" target="_blank"><img class="icon" src="../../static/photo/github.png" style="width: 8%">깃허브 방문하기</a>
+                        <br>
+                        <a href="https://shaded-zoo-3c5.notion.site/300aa1165c0f46fe953327e5cdabcb9e" target="_blank"><img class="icon" src="../../static/photo/notion.png" style="width: 8%">에서 더 자세한 이야기 듣기</a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <h3 style="font-size: 23pt; margin-top: 60px; margin-bottom: 50px;">🔻 아래는 제가 구현했던 웹 사이트를 iframe으로 임베딩 하였습니다.</h3>
+            <!-- 웹 사이트 임베딩 사용 -->
+            <div class="notion-page-content" style="flex-shrink: 0; flex-grow: 1; max-width: 100%; display: flex; align-items: flex-start; flex-direction: column; font-size: 16px; line-height: 1.5; width: 100%; z-index: 4; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin-bottom: 100px;"><div data-block-id="25c419c6-51ce-41b4-a66f-2284ae1fb2c6" class="notion-selectable notion-embed-block" style="width: 100%; max-width: 100%; align-self: center; margin-top: 4px; margin-bottom: 4px; transition-property: width; transition-duration: 270ms; transition-timing-function: ease;"><div contenteditable="false" data-content-editable-void="true" role="figure" aria-labelledby="id_4" embed-ghost=""><div style="display: flex;"><div class="notion-cursor-default" style="position: relative; overflow: hidden; flex-grow: 1;"><div style="position: relative; display: flex; justify-content: center; width: 100%; min-height: 100px; height: 700px;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px;"><div style="width: 100%; height: 100%;"><div style="position: relative; cursor: pointer;"><div style="position: relative;"><div style="display: block; pointer-events: auto; width: 100%;"><div style="position: relative; display: flex; justify-content: center; width: 100%; min-height: 100px; height: 700px;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px;"><div style="width: 100%; height: 100%;"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto;"><iframe src="https://syu-gpt.streamlit.app/?embed=true" frameborder="0" sandbox="allow-scripts allow-popups allow-top-navigation-by-user-activation allow-forms allow-same-origin allow-storage-access-by-user-activation allow-popups-to-escape-sandbox" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: rgb(25, 25, 25);"></iframe></div></div></div></div></div></div></div></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; left: 0px; top: 0px; z-index: 1; height: 100%; width: 15px; cursor: col-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); width: 6px; height: 48px; max-height: 50%;"></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; right: 0px; top: 0px; z-index: 1; height: 100%; width: 15px; cursor: col-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); width: 6px; height: 48px; max-height: 50%;"></div></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; right: 0px; z-index: 2; bottom: 0px; height: 20px; width: 20px; cursor: nwse-resize;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="cornerResize" style="width: 20px; height: 20px; display: block; fill: rgba(0, 0, 0, 0.65); flex-shrink: 0; stroke: rgba(255, 255, 255, 0.5); opacity: 0; position: relative; bottom: 3px; left: -3px; transform: none;"><path fill-rule="evenodd" stroke-width="1.5" d="M 14 0C 12.8955 0 12 0.895447 12 2L 12 12L 2 12C 0.895508 12 0 12.8954 0 14C 0 15.1046 0.895508 16 2 16L 14 16C 15.1045 16 16 15.1046 16 14L 16 2C 16 0.895447 15.1045 0 14 0Z"></path></svg></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; left: 0px; z-index: 2; bottom: 0px; height: 20px; width: 20px; cursor: nesw-resize;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="cornerResize" style="width: 20px; height: 20px; display: block; fill: rgba(0, 0, 0, 0.65); flex-shrink: 0; stroke: rgba(255, 255, 255, 0.5); opacity: 0; position: relative; bottom: 3px; left: 3px; transform: rotate(90deg);"><path fill-rule="evenodd" stroke-width="1.5" d="M 14 0C 12.8955 0 12 0.895447 12 2L 12 12L 2 12C 0.895508 12 0 12.8954 0 14C 0 15.1046 0.895508 16 2 16L 14 16C 15.1045 16 16 15.1046 16 14L 16 2C 16 0.895447 15.1045 0 14 0Z"></path></svg></div></div><div class="notion-block-resizer" style="display: contents;"><div style="position: absolute; pointer-events: none; display: flex; align-items: center; justify-content: center; bottom: 0px; z-index: 1; width: 100%; height: 15px; cursor: row-resize;"><div style="opacity: 0; transition: opacity 300ms ease-in 0s; border-radius: 20px; background: rgba(15, 15, 15, 0.6); border: 1px solid rgba(255, 255, 255, 0.9); height: 6px; width: 48px; max-width: 50%;"></div></div></div><div style="position: absolute; top: 4px; right: 4px; border-radius: 4px; color: white; fill: white; font-size: 11.5px; background: rgba(0, 0, 0, 0.6); display: flex; white-space: nowrap; height: 26px; max-width: calc(100% - 16px); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 300ms ease-in 0s; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; z-index: 2;"><div role="button" tabindex="0" aria-label="댓글" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="speechBubbleFilled" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M4.32 15.424c.39 0 .677-.192 1.149-.609l2.344-2.064h4.116c2.057 0 3.213-1.19 3.213-3.22V4.22c0-2.03-1.156-3.22-3.213-3.22H3.213C1.163 1 0 2.19 0 4.22V9.53c0 2.037 1.196 3.22 3.165 3.22h.28v1.675c0 .608.322.998.875.998zm.342-1.531v-1.949c0-.403-.178-.56-.56-.56H3.26c-1.285 0-1.9-.65-1.9-1.894V4.26c0-1.243.615-1.893 1.9-1.893h8.627c1.278 0 1.893.65 1.893 1.894v5.23c0 1.243-.615 1.893-1.893 1.893h-4.15c-.417 0-.622.068-.909.369l-2.167 2.14zm-.567-8.668h6.884a.433.433 0 00.423-.438.425.425 0 00-.423-.417H4.095a.419.419 0 00-.417.417c0 .24.184.438.417.438zm0 2.167h6.884a.427.427 0 000-.855H4.095a.425.425 0 00-.417.424c0 .24.184.43.417.43zm0 2.173h4.484c.24 0 .424-.191.424-.423 0-.24-.185-.431-.424-.431H4.095a.422.422 0 00-.417.43.42.42 0 00.417.424z"></path></svg></div><div role="button" tabindex="0" aria-label="맞춤" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="alignCenter" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M14.44 15.325H1.554a.598.598 0 01-.602-.602c0-.335.267-.601.602-.601H14.44c.334 0 .608.266.608.601a.604.604 0 01-.608.602zm0-13.447H1.554a.598.598 0 01-.602-.601c0-.335.267-.602.602-.602H14.44c.334 0 .608.267.608.602a.604.604 0 01-.608.601zm-8.736 10.34h4.738c1.12 0 1.776-.65 1.776-1.905V5.687c0-1.254-.656-1.905-1.922-1.905H5.704c-1.266 0-1.922.65-1.922 1.905v4.626c0 1.254.656 1.905 1.922 1.905zm.07-1.149c-.545 0-.843-.28-.843-.85V5.78c0-.568.298-.85.843-.85h4.452c.539 0 .843.282.843.85v4.44c0 .568-.304.85-.697.85H5.774z"></path></svg><svg role="graphics-symbol" viewBox="0 0 30 30" class="chevronDown" style="width: 8px; height: 100%; display: block; fill: white; flex-shrink: 0; margin-left: 4px;"><polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon></svg></div><div role="button" tabindex="0" aria-label="캡션" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="caption" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M2.87 8.975h6.74c1.119 0 1.775-.65 1.775-1.904V2.444c0-1.254-.656-1.904-1.922-1.904H2.871C1.605.54.949 1.19.949 2.444V7.07c0 1.254.656 1.904 1.922 1.904zm.07-1.148c-.544 0-.843-.282-.843-.85v-4.44c0-.568.299-.849.844-.849h6.451c.54 0 .844.281.844.85v4.44c0 .567-.305.849-.697.849H2.94zm-1.39 4.386h12.893a.604.604 0 00.608-.601.604.604 0 00-.608-.602H1.55a.598.598 0 00-.601.602c0 .335.266.601.601.601zm8.49 3.247H1.55a.598.598 0 01-.601-.601c0-.335.266-.602.601-.602h8.49c.336 0 .609.267.609.602a.604.604 0 01-.608.601z"></path></svg></div><div role="button" tabindex="0" aria-label="원본" style="user-select: none; transition: background 20ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px 6px; border-right: 1px solid rgba(255, 255, 255, 0.2);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="alias" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0; margin-right: 0px;"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></div><div role="button" tabindex="0" style="user-select: none; transition: opacity 200ms ease-in 0s; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 24px; height: 24px; border-radius: 4px; fill: rgba(255, 255, 255, 0.443);"><svg role="graphics-symbol" viewBox="0 0 13 3" class="dots" style="width: 14px; height: 14px; display: block; fill: white; flex-shrink: 0;"><g><path d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z"></path><path d="M8,1.5A1.5,1.5,0,1,1,6.5,0,1.5,1.5,0,0,1,8,1.5Z"></path><path d="M13,1.5A1.5,1.5,0,1,1,11.5,0,1.5,1.5,0,0,1,13,1.5Z"></path></g></svg></div></div><div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0, 0, 0, 0.6); border-radius: 4px; opacity: 0; transition: opacity 300ms ease-in 0s; overflow: hidden;"><div aria-disabled="true" role="button" tabindex="-1" class="altTextBlockButton" aria-label="대체 텍스트를 보고 편집하려면 클릭하세요." style="user-select: none; transition: background 20ms ease-in 0s; cursor: default; padding: 4px 6px; font-size: 12px; font-weight: 500; letter-spacing: 0.2px; color: white;">ALT</div></div></div><div style="position: relative; left: 0px;"></div></div></div></div></div></div></div>
+
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const gabeanDiv = document.getElementById('gabean');
+        const syugptDiv = document.getElementById('syu-gpt');
+        const toggleGabean = document.getElementById('toggleGabean');
+        const toggleSYUGPT = document.getElementById('toggleSYUGPT');
+
+        // 페이지 로드 시 로컬 스토리지에서 상태 불러오기
+        if (localStorage.getItem('showGabean') === 'true') {
+            gabeanDiv.classList.remove('hidden');
+            syugptDiv.classList.add('hidden');
+        } else if (localStorage.getItem('showSYUGPT') === 'true') {
+            syugptDiv.classList.remove('hidden');
+            gabeanDiv.classList.add('hidden');
+        }
+
+        toggleGabean.addEventListener('click', function() {
+            gabeanDiv.classList.remove('hidden');
+            syugptDiv.classList.add('hidden');
+            localStorage.setItem('showGabean', true);
+            localStorage.setItem('showSYUGPT', false);
+        });
+
+        toggleSYUGPT.addEventListener('click', function() {
+            syugptDiv.classList.remove('hidden');
+            gabeanDiv.classList.add('hidden');
+            localStorage.setItem('showSYUGPT', true);
+            localStorage.setItem('showGabean', false);
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.api-section');
+        const buttons = {
+            btnWeather: 'WeatherAPI',
+            btnNews: 'NaverNewsAPI',
+            btnSubway: 'SubwayAPI',
+            btnBus: 'BUSAPI'
+        };
+
+        function showSection(id) {
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+            localStorage.setItem('lastSection', id);
+        }
+
+        Object.keys(buttons).forEach(buttonID => {
+            document.getElementById(buttonID).addEventListener('click', function() {
+                showSection(buttons[buttonID]);
+            });
+        });
+
+        // 페이지 로드 시 마지막으로 보았던 섹션 로드
+        const lastSection = localStorage.getItem('lastSection') || 'WeatherAPI';
+        showSection(lastSection);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.hash) {
+            var hash = window.location.hash;
+            var element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView();
+            }
+        }
+    });
+</script>
+<!-- 위로 스크롤 하기 -->
+<a style="display: scroll; position: fixed; bottom: 50px; right: 50px;" rel="nofollow" href="#" onclick="scrollToTop(); return false;" style="font-size: 2.0em">
+    <img src="../../static/photo/top.png">
+</a>
+<script>
+    function scrollToTop() {
+        document.querySelector('.body').scrollTop = 0;
+    }
+</script>
+</body>
+</html>

@@ -5,6 +5,13 @@
     <title>GaBean</title>
     <link rel="icon" href="../static/photo/GaBeanLogo.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var UserAgent = navigator.userAgent;
+        if (UserAgent.match(/iPhone|ipad|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+        {
+            location.href = "/m/gabean"; /* 모바일 홈페이지 경로 */
+        }
+    </script>
     <style>
         @font-face {
             font-family: 'MyCustomFont';
@@ -62,7 +69,6 @@
         .first > ol {
           width: 100px;
           margin-top: 20px;
-
         }
 
         .first > ol > li {
@@ -81,7 +87,7 @@
         .first {
           background: linear-gradient(to top, #748ffc, #9775fa);
           border-right: 1px solid grey;
-          width: 15vw;
+          width: 20%;
           min-width: 20%;
           border-radius: 0px 0px 0px 5px;
         }
@@ -144,90 +150,102 @@
           border-radius: 0px 0px 5px 0px;
         }
 
-            .button_ai {
-                display: inline-block;
-                padding: 12px 24px;
-                width: 13%;
-                font-size: 16px;
-                font-weight: 600;
-                text-align: center;
-                text-decoration: none;
-                color: #fff;
-                background-color: #007BFF;
-                border-radius: 4px;
-                border: none;
-                transition: all 0.3s ease 0s;
-                cursor: pointer;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-                margin-right: 5px;
-            }
-
-            .button_ai:hover {
-                background-color: #0056b3;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            }
-
-            .button_ai:active {
-                background-color: #004085;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            }
-
-            .input_custom {
-              position: relative;
-              width: 300px;
-              margin: 0 auto;
-              margin-top: 30px;
-            }
-
-            .input_custom input {
-              font-size: 15px;
-              color: #222222;
-              width: 300px;
-              border: none;
-              border-bottom: solid #aaaaaa 1px;
-              padding-bottom: 10px;
-              text-align: center;
-              position: relative;
-              background: none;
-              z-index: 5;
-            }
-
-            input::placeholder { color: #aaaaaa; }
-            input:focus { outline: none; }
-
-            .input_custom span {
-              display: block;
-              position: absolute;
-              bottom: 0;
-              left: 50%;  /* right로만 바꿔주면 오 - 왼 */
-              background-color: #666;
-              width: 0;
-              height: 2px;
-              border-radius: 2px;
-              transform: translateX(-50%);
-              transition: 0.5s;
-            }
-
-            .input_custom label {
-            position: absolute;
-            color: #aaa;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
-            bottom: 8px;
-            transition: all .2s;
-            }
-
-            .input_custom input:focus ~ label, input:valid ~ label {
+        .button_ai {
+            display: inline-block;
+            padding: 12px 24px;
+            width: 13%;
             font-size: 16px;
-            bottom: 40px;
-            color: #666;
-            font-weight: bold;
-            }
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 4px;
+            border: none;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+            margin-right: 5px;
+        }
 
-            .input_custom input:focus ~ span, input:valid ~ span {
-            width: 100%;
+        .button_ai:hover {
+            background-color: #0056b3;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .button_ai:active {
+            background-color: #004085;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .input_custom {
+          position: relative;
+          width: 300px;
+          margin: 0 auto;
+          margin-top: 30px;
+        }
+
+        .input_custom input {
+          font-size: 15px;
+          color: #222222;
+          width: 300px;
+          border: none;
+          border-bottom: solid #aaaaaa 1px;
+          padding-bottom: 10px;
+          text-align: center;
+          position: relative;
+          background: none;
+          z-index: 5;
+        }
+
+        input::placeholder { color: #aaaaaa; }
+        input:focus { outline: none; }
+
+        .input_custom span {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 50%;  /* right로만 바꿔주면 오 - 왼 */
+          background-color: #666;
+          width: 0;
+          height: 2px;
+          border-radius: 2px;
+          transform: translateX(-50%);
+          transition: 0.5s;
+        }
+
+        .input_custom label {
+        position: absolute;
+        color: #aaa;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 20px;
+        bottom: 8px;
+        transition: all .2s;
+        }
+
+        .input_custom input:focus ~ label, input:valid ~ label {
+        font-size: 16px;
+        bottom: 40px;
+        color: #666;
+        font-weight: bold;
+        }
+
+        .input_custom input:focus ~ span, input:valid ~ span {
+        width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            .first-logo {
+                font-size: 20pt; /* 모든 li의 폰트 크기를 작게 조정 */
             }
+        }
+
+        @media (max-width: 1200px) {
+            .mainText {
+                font-size: 15pt; /* 모든 li의 폰트 크기를 작게 조정 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -236,8 +254,7 @@
     <div class="first">
         <ol>
             <br>
-            <li style="font-size: 30pt;"><a>y2chan's</a></li>
-            <li style="font-size: 35pt;"><a>Portfolio</a></li>
+            <li style="font-size: 30pt;"><a class="first-logo">y2chan's<br>Portfolio</a></li>
             <br>
             <br>
             <br>
@@ -261,7 +278,8 @@
             <span class="boldText" style="font-size: 18pt;">Ga</span><span class="boldText2" style="font-size: 18pt;">Bean</span>
             <br>
             <span class="boldText">Guide</span>For<span class="boldText2">Bean</span>의 줄임말로 신입생(콩)들을 안내하기 위한 웹 사이트입니다.
-
+            <br>
+            Python을 기반으로 한 <span class="boldText">Django Framework</span>를 활용하였고,
             <br>
             Nginx와 Docker을 활용한 인프라 구축 및 <span class="boldText">Load Balancing</span>으로 트래픽을 조절하였습니다.
             <br>
@@ -288,134 +306,153 @@
         </div>
         <h3 style="font-size: 17pt; margin-bottom: 30px;">🔻 아래는 제가 활용했던 API를 간단하게 구현하였습니다.</h3>
         <div class="button_ai" id="btnWeather">날씨 API</div>
-        <div class="button_ai" id="btnNews">Naver News API</div>
+        <div class="button_ai" id="btnNews">Naver News</div>
         <div class="button_ai" id="btnSubway">지하철 API</div>
         <div class="button_ai" id="btnBus">버스 API</div>
-        <hr style="width: 80%; margin-top: 30px; margin-bottom: 50px;">
+        <hr style="width: 80%; margin-top: 15px; margin-bottom: 50px;">
 
         <!-- 날씨 API 사용 -->
-        <h2 id="WeatherAPI" style="font-size: 25pt;">- 날씨 API -</h2>
-        <ul style="margin-bottom: 80px;">
-            <li>{{ city }} (삼육대학교)</li>
-            <li>{{ weather_info.today_date }} {{ weather_info.current_time }}</li>
-            <li style="font-size: 20pt;">{{ weather_info.temperature }}°C / {{ weather_info.precipitation_type }}</li>
-            <li style="font-size: 11pt;">{{ weather_info.weather_status }}, {{ weather_info.wind_speed }}</li>
-        </ul>
+        <div id="WeatherAPI" class="api-section">
+            <h2 style="font-size: 25pt;">- 날씨 API -</h2>
+            <ul style="margin-bottom: 80px;">
+                <li>{{ city }} (삼육대학교)</li>
+                <li>{{ weather_info.today_date }} {{ weather_info.current_time }}</li>
+                <li style="font-size: 20pt;">{{ weather_info.temperature }}°C / {{ weather_info.precipitation_type }}</li>
+                <li style="font-size: 11pt;">{{ weather_info.weather_status }}, {{ weather_info.wind_speed }}</li>
+            </ul>
+        </div>
 
         <!-- Naver News API 사용 -->
-        <h2 id="NaverNewsAPI" style="font-size: 25pt;">- Naver News API -</h2>
-        <form action="{% url 'main:gabean' %}#NaverNewsAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
-            <div class="input_custom">
-                <input type="text" name="query" value="{{ query }}">
-                <label>Keyword 입력</label>
-                <span></span>
-            </div>
-        </form>
-        <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
+        <div id="NaverNewsAPI" class="api-section">
+            <h2 style="font-size: 25pt;">- Naver News API -</h2>
+            <form action="{% url 'main:gabean' %}#NaverNewsAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+                <div class="input_custom">
+                    <input type="text" name="query" value="{{ query }}">
+                    <label>Keyword 입력</label>
+                    <span></span>
+                </div>
+            </form>
+            <h4>Keyword를 입력하면 가장 최신/관련 3개의 뉴스 기사를 가져옵니다.</h4>
 
-        <h3 style="margin-top: 40px;">Result</h3>
-        {% if news %}
-        {% if query %}
-        <h3 style="margin-bottom: 40px;">검색어: "{{ query }}"</h3>
-        {% endif %}
-        <ul style="margin-bottom: 80px;">
-            {% for item in news %}
-            <li>
-                <a href="{{ item.link }}" target="_blank"><h3>◼ {{ item.title|safe }}</h3></a>
-                <p>📆 {{ item.pubDate }}</p>
-                <p style="border-bottom: 2px solid #ddd; padding: 8px;">▪ {{ item.description|safe }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <h3 style="margin-top: 20px; margin-bottom: 80px;">검색 결과가 없습니다.</h3>
-        {% endif %}
+            <h3 style="margin-top: 40px;">Result</h3>
+            {% if news %}
+            {% if query %}
+            <h3 style="margin-bottom: 40px;">검색어: "{{ query }}"</h3>
+            {% endif %}
+            <ul style="margin-bottom: 80px;">
+                {% for item in news %}
+                <li>
+                    <a href="{{ item.link }}" target="_blank"><h3>◼ {{ item.title|safe }}</h3></a>
+                    <p>📆 {{ item.pubDate }}</p>
+                    <p style="border-bottom: 2px solid #ddd; padding: 8px;">▪ {{ item.description|safe }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h3 style="margin-top: 20px; margin-bottom: 80px;">검색 결과가 없습니다.</h3>
+            {% endif %}
+        </div>
 
         <!-- 지하철 API 사용 -->
-        <h2 id="SubwayAPI" style="font-size: 25pt;">- 지하철 API -</h2>
-        <form action="{% url 'main:gabean' %}#SubwayAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
-            <div class="input_custom">
-                <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}">
-                <label>지하철 역 입력</label>
-                <span></span>
-            </div>
-        </form>
-        <h4>지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
-        <h3 style="margin-top: 40px;">Result</h3>
-        {% if subway_info %}
-        {% for station, arrivals in subway_info.items %}
-        <h2>{{ station }}역</h2>
-        <ul style="margin-bottom: 80px;">
-            {% for arrival in arrivals %}
-            <li>
-                <p>{{ arrival.trainLineNm }} / {{ arrival.recptnDt }}</p>
-                <p>{{ arrival.arvlMsg2 }}</p>
-            </li>
+        <div id="SubwayAPI" class="api-section">
+            <h2 style="font-size: 25pt;">- 지하철 API -</h2>
+            <form action="{% url 'main:gabean' %}#SubwayAPI" method="get" style="margin-top: 60px; margin-bottom: 30px;">
+                <div class="input_custom">
+                    <input type="text" id="subway_name" name="subway_name" value="{{ subway_name }}">
+                    <label>지하철 역 입력</label>
+                    <span></span>
+                </div>
+            </form>
+            <h4>지하철역명을 입력하면 가장 빠르게 도착하는 2개의 도착 정보를 가져옵니다. <br><br>지하철역명을 입력할때는 정확한 이름으로 입력 해야 합니다. <br>ex. 화랑대(서울여대입구) <br>또한 지하철역명을 입력할때는 역을 빼고 입력 해야 합니다. <br>ex. 강남역 -> 강남</h4>
+            <h3 style="margin-top: 40px;">Result</h3>
+            {% if subway_info %}
+            {% for station, arrivals in subway_info.items %}
+            <h2>{{ station }}역</h2>
+            <ul style="margin-bottom: 80px;">
+                {% for arrival in arrivals %}
+                <li>
+                    <p>{{ arrival.trainLineNm }} / {{ arrival.recptnDt }}</p>
+                    <p>{{ arrival.arvlMsg2 }}</p>
+                </li>
+                {% endfor %}
+            </ul>
             {% endfor %}
-        </ul>
-        {% endfor %}
-        {% else %}
-        <h3 style="margin-bottom: 80px;">지하철 정보가 없습니다.</h3>
-        {% endif %}
-
-        <!-- 카카오맵 API 사용 -->
-        <h2 id="BUSAPI" style="font-size: 25pt; margin-bottom: 30px;">- 버스 API -</h2>
-        <div class="info-bus">
-            <div class="direction">
-                <h2 style="font-size: 20pt; margin-bottom: 30px;">학교에서 나가는 방향</h2>
-                {% for stNm, bus_list in bus_info.direction_1.items %}
-                <h3>{{ stNm }}</h3>
-                <hr>
-                {% for bus in bus_list %}
-                <ul>
-                    <li style="list-style-type: none;">
-                        <h2>{{ bus.rtNm }}</h2>
-                        <p>{{ bus.arrmsg1 }}</p>
-                        <p>{{ bus.arrmsg2 }}</p>
-                    </li>
-                </ul>
-                {% endfor %}
-                <hr>
-                {% endfor %}
-            </div>
-            <div class="direction">
-                <h2 style="font-size: 20pt; margin-bottom: 30px;">학교로 오는 방향</h2>
-                {% for stNm, bus_list in bus_info.direction_2.items %}
-                <h3>{{ stNm }}</h3>
-                <hr>
-                {% for bus in bus_list %}
-                <ul>
-                    <li style="list-style-type: none;">
-                        <h2>{{ bus.rtNm }}</h2>
-                        <p>{{ bus.arrmsg1 }}</p>
-                        <p>{{ bus.arrmsg2 }}</p>
-                    </li>
-                </ul>
-                {% endfor %}
-                <hr>
-                {% endfor %}
+            {% else %}
+            <h3 style="margin-bottom: 80px;">지하철 정보가 없습니다.</h3>
+            {% endif %}
+        </div>
+        <!-- 버스 API 사용 -->
+        <div id="BUSAPI" class="api-section">
+            <h2 style="font-size: 25pt; margin-bottom: 30px;">- 버스 API -</h2>
+            <h4>삼육대학교 학생들이 가장 많이 이용하는 버스 정류장과 버스의 현재 정보입니다.</h4>
+            <div class="info-bus">
+                <div class="direction">
+                    <h2 style="font-size: 20pt; margin-bottom: 30px;">학교에서 나가는 방향</h2>
+                    {% for stNm, bus_list in bus_info.direction_1.items %}
+                    <h3>{{ stNm }}</h3>
+                    <hr>
+                    {% for bus in bus_list %}
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <h2>{{ bus.rtNm }}</h2>
+                            <p>{{ bus.arrmsg1 }}</p>
+                            <p>{{ bus.arrmsg2 }}</p>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                    <hr>
+                    {% endfor %}
+                </div>
+                <div class="direction">
+                    <h2 style="font-size: 20pt; margin-bottom: 30px;">학교로 오는 방향</h2>
+                    {% for stNm, bus_list in bus_info.direction_2.items %}
+                    <h3>{{ stNm }}</h3>
+                    <hr>
+                    {% for bus in bus_list %}
+                    <ul>
+                        <li style="list-style-type: none;">
+                            <h2>{{ bus.rtNm }}</h2>
+                            <p>{{ bus.arrmsg1 }}</p>
+                            <p>{{ bus.arrmsg2 }}</p>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                    <hr>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <p style="margin-top: 40px; margin-bottom: 50px;">API 출처 : 공공데이터포털, NAVER Developers </p>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('btnWeather').addEventListener('click', function() {
-            document.getElementById('WeatherAPI').scrollIntoView({ behavior: 'smooth' });
+        const sections = document.querySelectorAll('.api-section');
+        const buttons = {
+            btnWeather: 'WeatherAPI',
+            btnNews: 'NaverNewsAPI',
+            btnSubway: 'SubwayAPI',
+            btnBus: 'BUSAPI'
+        };
+
+        function showSection(id) {
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+            localStorage.setItem('lastSection', id);
+        }
+
+        Object.keys(buttons).forEach(buttonID => {
+            document.getElementById(buttonID).addEventListener('click', function() {
+                showSection(buttons[buttonID]);
+            });
         });
 
-        document.getElementById('btnNews').addEventListener('click', function() {
-            document.getElementById('NaverNewsAPI').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('btnSubway').addEventListener('click', function() {
-            document.getElementById('SubwayAPI').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('btnBus').addEventListener('click', function() {
-            document.getElementById('BUSAPI').scrollIntoView({ behavior: 'smooth' });
-        });
+        // 페이지 로드 시 마지막으로 보았던 섹션 로드
+        const lastSection = localStorage.getItem('lastSection') || 'WeatherAPI';
+        showSection(lastSection);
     });
 </script>
 

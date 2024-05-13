@@ -5,6 +5,13 @@
     <title>SYU_GPT</title>
     <link rel="icon" href="../static/photo/Logo.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var UserAgent = navigator.userAgent;
+        if (UserAgent.match(/iPhone|ipad|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+        {
+            location.href = "/m/syugpt"; /* 모바일 홈페이지 경로 */
+        }
+    </script>
     <style>
         @font-face {
             font-family: 'MyCustomFont';
@@ -124,6 +131,18 @@
             width: 5%; /* 아이콘 크기 설정 */
             vertical-align: middle; /* 텍스트 줄과 아이콘의 세로 중앙 정렬 */
         }
+
+        @media (max-width: 1200px) {
+            .first-logo {
+                font-size: 20pt; /* 모든 li의 폰트 크기를 작게 조정 */
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .mainText {
+                font-size: 15pt; /* 모든 li의 폰트 크기를 작게 조정 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -132,8 +151,7 @@
     <div class="first">
         <ol>
             <br>
-            <li style="font-size: 30pt;"><a>y2chan's</a></li>
-            <li style="font-size: 35pt;"><a>Portfolio</a></li>
+            <li style="font-size: 30pt;"><a class="first-logo">y2chan's<br>Portfolio</a></li>
             <br>
             <br>
             <br>
@@ -158,9 +176,9 @@
             <br>
             삼육대학교의 다양한 정보를 질의 응답할 수 있는 <span class="boldText">GPT 기반</span> 챗봇입니다.
             <br>
-            <span class="boldText">LangChain의 RAG 모델</span>과 <span class="boldText2">HuggingFace Embedding</span>을 이용한 프롬프트 엔지니어링 및 데이터 인덱싱을 진행하였습니다.
+            <span class="boldText">LangChain의 RAG 모델</span>과 <span class="boldText2">HuggingFace Embedding</span>을 이용한 <br>프롬프트 엔지니어링 및 데이터 인덱싱을 진행하였습니다.
             <br>
-            <span class="boldText2">Gemini</span>를 활용하여 사용자 질문을 처리 및 답변하였고, <span class="boldText">LangSmith</span>를 이용하여 Output과 코드를 개선하였습니다.
+            <span class="boldText2">Gemini</span>를 활용하여 사용자 질문을 처리 및 답변하였고, <br><span class="boldText">LangSmith</span>를 이용하여 Output과 코드를 개선하였습니다.
             <br>
             <br>
             <div class="link-container">

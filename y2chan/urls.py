@@ -20,4 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+
+    # 모바일 전용 URL 패턴
+    path('m/', include('main.mobile_urls')),
 ]
