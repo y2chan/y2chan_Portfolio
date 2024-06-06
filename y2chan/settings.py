@@ -95,9 +95,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CUSTOM_USERNAME = config('CUSTOM_USERNAME')
 CUSTOM_PASSWORD = config('CUSTOM_PASSWORD')
 
-print(f"Loaded CUSTOM_USERNAME: {CUSTOM_USERNAME}")
-print(f"Loaded CUSTOM_PASSWORD: {CUSTOM_PASSWORD}")
-
 # 로그인, 로그아웃 리디렉션 설정
 LOGIN_REDIRECT_URL = 'main:board_list'
 LOGOUT_REDIRECT_URL = 'main:board_list'
