@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boards</title>
+</head>
+<body>
+<a href="{% url 'main:home' %}">
+    <img src="../../static/photo/me.jpg" alt="Home" style="width:50px;height:50px;">
+</a>
+<h1>Boards</h1>
+<a href="{% url 'main:board_create' %}">Create new board</a>
+<ul>
+    {% for board in boards %}
+    <li>
+        <a href="{% url 'main:post_list' board.slug %}">{{ board.name }}</a>
+        <a href="{% url 'main:board_edit' board.slug %}">Edit</a>
+        <form action="{% url 'main:board_delete' board.slug %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

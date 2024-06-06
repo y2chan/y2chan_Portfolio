@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ board.name }}</title>
+</head>
+<body>
+<a href="{% url 'main:board_list' %}">
+    <img src="../../static/photo/me.jpg" alt="Back to Boards" style="width:50px;height:50px;">
+</a>
+<h1>{{ board.name }}</h1>
+<a href="{% url 'main:post_create' board.slug %}">Create new post</a>
+<ul>
+    {% for post in posts %}
+    <li>
+        <a href="{% url 'main:post_detail' board.slug post.slug %}">{{ post.title }}</a>
+        <a href="{% url 'main:post_edit' board.slug post.slug %}">Edit</a>
+        <form action="{% url 'main:post_delete' board.slug post.slug %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<div>
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+            <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

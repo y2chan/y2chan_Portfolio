@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create/Edit Post</title>
+</head>
+<body>
+<a href="{% url 'main:post_list' board.id %}">
+    <img src="../../static/photo/me.jpg" alt="Back to Posts" style="width:50px;height:50px;">
+</a>
+<h1>Create/Edit Post</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 import xml.etree.ElementTree as ET
 import logging
 from itertools import groupby
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Board, Post
+from .forms import PostForm, BoardForm
+from django.core.paginator import Paginator
 
 logger = logging.getLogger(__name__)
 
@@ -488,3 +492,77 @@ class mobile_home(TemplateView):
             grouped_data[key] = list(group)
         return grouped_data
 
+def board_list(request):
+    boards = Board.objects.all()
+    return render(request, 'blog/board_list.html', {'boards': boards})
+
+def post_list(request, board_slug):
+    board = get_object_or_404(Board, slug=board_slug)
+    posts = Post.objects.filter(board=board).order_by('-created_at')
+    paginator = Paginator(posts, 10)  # 한 페이지당 10개의 게시물
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'blog/post_list.html', {'board': board, 'posts': posts})
+
+def post_detail(request, board_slug, post_slug):
+    post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
+def post_create(request, board_slug):
+    board = get_object_or_404(Board, slug=board_slug)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.board = board
+            post.save()
+            return redirect('main:post_list', board_slug=board.slug)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_form.html', {'form': form, 'board': board})
+
+def post_edit(request, board_slug, post_slug):
+    post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('main:post_detail', board_slug=board_slug, post_slug=post.slug)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_form.html', {'form': form, 'board': post.board})
+
+def post_delete(request, board_slug, post_slug):
+    post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('main:post_list', board_slug=board_slug)
+    return render(request, 'blog/post_confirm_delete.html', {'post': post})
+
+def board_create(request):
+    if request.method == 'POST':
+        form = BoardForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main:board_list')
+    else:
+        form = BoardForm()
+    return render(request, 'blog/board_form.html', {'form': form})
+
+def board_edit(request, board_slug):
+    board = get_object_or_404(Board, slug=board_slug)
+    if request.method == 'POST':
+        form = BoardForm(request.POST, instance=board)
+        if form.is_valid():
+            form.save()
+            return redirect('main:board_list')
+    else:
+        form = BoardForm(instance=board)
+    return render(request, 'blog/board_form.html', {'form': form})
+
+def board_delete(request, board_slug):
+    board = get_object_or_404(Board, slug=board_slug)
+    if request.method == 'POST':
+        board.delete()
+        return redirect('main:board_list')
+    return render(request, 'blog/board_confirm_delete.html', {'board': board})
