@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<p>Please login with your credentials.</p>
+<form method="post" action="{% url 'main:login' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+</form>
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+<a href="{% url 'main:logout' %}">Logout</a>
+</body>
+</html>

@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Create Board</title>
+    {% load static %}
 </head>
 <body>
-<a href="{% url 'main:board_list' %}">
-    <img src="../../static/photo/me.jpg" alt="Back to Boards" style="width:50px;height:50px;">
+<a href="javascript:history.back()">
+    <img src="{% static 'photo/back.png' %}" alt="Back to Boards" style="width:50px;height:50px;">
 </a>
 <h1>Create/Edit Board</h1>
 <form method="post">

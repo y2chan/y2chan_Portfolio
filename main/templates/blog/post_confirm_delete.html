@@ -2,13 +2,17 @@
 <html>
 <head>
     <title>Confirm Delete</title>
+    {% load static %}
 </head>
 <body>
+<a href="javascript:history.back()">
+    <img src="{% static 'photo/back.png' %}" alt="Back to Posts" style="width:50px;height:50px;">
+</a>
 <h1>Are you sure you want to delete "{{ post.title }}"?</h1>
 <form method="post">
     {% csrf_token %}
     <button type="submit">Yes, delete</button>
 </form>
-<a href="{% url 'main:post_detail' post.board.id post.id %}">Cancel</a>
+<a href="javascript:history.back()">Cancel</a>
 </body>
 </html>

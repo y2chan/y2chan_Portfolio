@@ -2,14 +2,15 @@
 <html>
 <head>
     <title>{{ post.title }}</title>
+    {% load static %}
 </head>
 <body>
 <a href="{% url 'main:post_list' post.board.slug %}">
-    <img src="../../static/photo/me.jpg" alt="Back to Posts" style="width:50px;height:50px;">
+    <img src="{% static 'photo/back.png' %}" alt="Back to Posts" style="width:50px;height:50px;">
 </a>
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
-<a href="{% url 'main:post_delete' post.board.slug post.slug %}">Delete</a>
 <a href="{% url 'main:post_edit' post.board.slug post.slug %}">Edit</a>
+<a href="{% url 'main:post_delete' post.board.slug post.slug %}">Delete</a>
 </body>
 </html>

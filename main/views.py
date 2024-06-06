@@ -8,9 +8,39 @@ import xml.etree.ElementTree as ET
 import logging
 from itertools import groupby
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Board, Post
 from .forms import PostForm, BoardForm
 from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login, logout
+from django.conf import settings
+from django.contrib.auth.models import User
+
+def home(request):
+    return render(request, 'home.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if username == settings.CUSTOM_USERNAME and password == settings.CUSTOM_PASSWORD:
+            # 로그인 성공 메시지 및 리디렉션 처리
+            user, created = User.objects.get_or_create(username=username)
+            if created:
+                user.set_password(password)
+                user.save()
+            login(request, user)
+            return redirect('main:board_list')
+        else:
+            messages.error(request, 'Invalid credentials')
+    return render(request, 'registration/login.html')
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, 'You have successfully logged out.')
+    return redirect('main:board_list')
 
 logger = logging.getLogger(__name__)
 
@@ -508,6 +538,7 @@ def post_detail(request, board_slug, post_slug):
     post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
     return render(request, 'blog/post_detail.html', {'post': post})
 
+@login_required
 def post_create(request, board_slug):
     board = get_object_or_404(Board, slug=board_slug)
     if request.method == 'POST':
@@ -521,7 +552,9 @@ def post_create(request, board_slug):
         form = PostForm()
     return render(request, 'blog/post_form.html', {'form': form, 'board': board})
 
+@login_required
 def post_edit(request, board_slug, post_slug):
+    board = get_object_or_404(Board, slug=board_slug)
     post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -530,8 +563,10 @@ def post_edit(request, board_slug, post_slug):
             return redirect('main:post_detail', board_slug=board_slug, post_slug=post.slug)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_form.html', {'form': form, 'board': post.board})
+    return render(request, 'blog/post_form.html', {'form': form, 'board': board})
 
+
+@login_required
 def post_delete(request, board_slug, post_slug):
     post = get_object_or_404(Post, board__slug=board_slug, slug=post_slug)
     if request.method == 'POST':
@@ -539,6 +574,7 @@ def post_delete(request, board_slug, post_slug):
         return redirect('main:post_list', board_slug=board_slug)
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
 
+@login_required
 def board_create(request):
     if request.method == 'POST':
         form = BoardForm(request.POST)
@@ -549,6 +585,7 @@ def board_create(request):
         form = BoardForm()
     return render(request, 'blog/board_form.html', {'form': form})
 
+@login_required
 def board_edit(request, board_slug):
     board = get_object_or_404(Board, slug=board_slug)
     if request.method == 'POST':
@@ -560,6 +597,7 @@ def board_edit(request, board_slug):
         form = BoardForm(instance=board)
     return render(request, 'blog/board_form.html', {'form': form})
 
+@login_required
 def board_delete(request, board_slug):
     board = get_object_or_404(Board, slug=board_slug)
     if request.method == 'POST':
